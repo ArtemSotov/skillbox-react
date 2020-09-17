@@ -6,18 +6,23 @@
   "scripts": {
     "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js",
     "build:prod": "cross-env NODE_ENV=production webpack --config webpack.config.js",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server",
+    "dev": "cross-env NODE_ENV=development node ./bin/dev.js",
     "test": "echo \"Hello world\" && exit 0"
   },
   "author": "Artem Sotov",
   "license": "ISC",
   "devDependencies": {
+    "@hot-loader/react-dom": "^16.13.0",
+    "clean-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^4.4.1",
+    "react-hot-loader": "^4.12.21",
     "ts-loader": "^8.0.3",
     "typescript": "^4.0.2",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
+    "webpack-dev-middleware": "^3.7.2",
     "webpack-dev-server": "^3.11.0",
+    "webpack-hot-middleware": "^2.25.0",
     "webpack-node-externals": "^2.5.2"
   },
   "dependencies": {
