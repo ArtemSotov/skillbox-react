@@ -1,7 +1,8 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { Header } from '../shared/Header';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { App } from "../App";
+// import { Header } from '../shared/Header';
 
-window.addEventListener('load', ()=>{
-  ReactDOM.hydrate(<Header />, document.getElementById('react_root'));
+window.addEventListener("load", () => {
+  ReactDOM.hydrate(<App />, document.getElementById("react_root"));
 });
