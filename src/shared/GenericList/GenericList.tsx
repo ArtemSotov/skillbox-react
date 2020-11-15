@@ -6,7 +6,7 @@ import styles from './genericlist.css';
 interface IItem {
 	value: string;
 	id: string;
-	onClick: () => void;
+	onClick: (id: string) => void;
 };
 
 interface IMyListProps {
@@ -19,7 +19,7 @@ export function MyList({ list }: IMyListProps) {
 		<ul>
 			{list.map((item: IItem) => (
 				// <li onClick={() => onClick(item.id)} key={item.id}>{item.value}</li>
-				<li onClick={item.onClick} key={item.id}>{item.value}</li>
+				<li onClick={() => item.onClick(item.id)} key={item.id}>{item.value}</li>
 			))}
 		</ul>
 	);
