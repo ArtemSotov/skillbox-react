@@ -6,13 +6,13 @@ import { Header } from "./shared/Header";
 import { Content } from "./shared/Content";
 import { CardsList } from "./shared/CardsList";
 import { generateId, generateRandomString } from "./utils/react/generateRandomIndex";
-import { MyList } from "./shared/GenericList";
+import { GenericList } from "./shared/GenericList";
 import { merge } from "./utils/js/merge";
 
 const LIST = [
-	{ value: 'some' },
-	{ value: 'other some' },
-	{ value: 'some' }
+	{ text: 'some' },
+	{ text: 'other some' },
+	{ text: 'some' }
 ].map(generateId);
 
 function AppComponent() {
@@ -21,7 +21,7 @@ function AppComponent() {
 		setList(list.filter((item) => item.id !== id));
 	}
 	const handleAdd = () => {
-		setList(list.concat(generateId({ value: generateRandomString() })))
+		setList(list.concat(generateId({ text: generateRandomString() })))
 	}
 
 	return (
@@ -37,7 +37,7 @@ function AppComponent() {
 					}
 				}))} /> */}
 				<button onClick={handleAdd}>Add Element</button>
-				<MyList list={list.map(merge({ onClick: handleItemClick }))} />
+				<GenericList list={list.map(merge({ onClick: handleItemClick }))} />
 			</Content>
 		</Layout>
 	);
