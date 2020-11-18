@@ -8,6 +8,7 @@ import { CardsList } from "./shared/CardsList";
 import { generateId, generateRandomString } from "./utils/react/generateRandomIndex";
 import { GenericList } from "./shared/GenericList";
 import { merge } from "./utils/js/merge";
+import { Dropdown } from "./shared/Dropdown";
 
 const LIST = [
 	{ text: 'some' },
@@ -29,15 +30,12 @@ function AppComponent() {
 			<Header />
 			<Content>
 				<CardsList />
-				{/* <MyList list={LIST} onClick={console.log} /> */}
-				{/* <MyList list={LIST.map((item) => ({
-					...item,
-					onClick: () => {
-						console.log(item.id);
-					}
-				}))} /> */}
-				<button onClick={handleAdd}>Add Element</button>
-				<GenericList list={list.map(merge({ onClick: handleItemClick }))} />
+				<div style={{ padding: 20 }}>
+					<br />
+					<Dropdown button={<button>Test</button>}>
+						<CardsList />
+					</Dropdown>
+				</div>
 			</Content>
 		</Layout>
 	);
