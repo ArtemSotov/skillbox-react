@@ -32,12 +32,17 @@ function AppComponent() {
 				<CardsList />
 				<div style={{ padding: 20 }}>
 					<br />
-					<Dropdown button={<button>Test</button>}>
-						<CardsList />
+					<Dropdown
+						onClose={() => console.log('closed')}
+						onOpen={() => console.log('opened')}
+						isOpen={false}
+						button={<button>Test</button>}
+					>
+						<ul><li>1</li></ul>
 					</Dropdown>
 				</div>
 			</Content>
-		</Layout>
+		</Layout >
 	);
 }
 
