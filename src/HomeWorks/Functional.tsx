@@ -1,7 +1,7 @@
 // занятие 5.1
 
 import React from "react";
-import { pickFromSyntheticEvent } from "../utils/react/pickFromSyntheticEvent";
+import { getChecked, getValue, pickFromSyntheticEvent } from "../utils/react/pickFromSyntheticEvent";
 
 // const withIdKey = withKey('id');
 
@@ -51,7 +51,6 @@ function Checkbox(props: { onChange: (value: boolean) => void, value: boolean })
 	)
 }
 
-export const getValue = pickFromSyntheticEvent<HTMLInputElement>()('value');
-export const getChecked = pickFromSyntheticEvent<HTMLInputElement>()('checked');
+
 
 
