@@ -45,3 +45,13 @@ button {
   background: transparent;
   cursor: pointer;
 }
+
+.menuItem{
+	padding: 12px 20px;
+	cursor: pointer;
+}
+
+.menuItem:active,
+  .menuItem:hover {
+	background-color: var(--greyD9);
+  }

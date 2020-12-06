@@ -1,4 +1,5 @@
 import React from 'react';
+import { noop } from '../../utils/js/noop';
 import styles from './dropdown.css';
 
 interface IDropdownProps {
@@ -16,7 +17,7 @@ export function Dropdown({ button, children, isOpen, onClose = noop, onOpen = no
 	React.useEffect(() => setIsDropdownOpen(isOpen), [isOpen]);
 	React.useEffect(() => isDropdownOpen ? onOpen() : onClose(), [isDropdownOpen]);
 	const handleOpen = () => {
-		console.log('Dropdown: ', isOpen);
+		// console.log('Dropdown: ', isOpen);
 
 		if (isOpen === undefined || isOpen === false) {
 			setIsDropdownOpen(!isDropdownOpen);

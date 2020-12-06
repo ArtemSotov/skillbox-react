@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './genericlist.css';
 
-interface IItem {
+export interface IItem {
 	id: string;
 	text: string;
 	onClick: (id: string) => void;
