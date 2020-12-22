@@ -17,8 +17,6 @@ export function Dropdown({ button, children, isOpen, onClose = noop, onOpen = no
 	React.useEffect(() => setIsDropdownOpen(isOpen), [isOpen]);
 	React.useEffect(() => isDropdownOpen ? onOpen() : onClose(), [isDropdownOpen]);
 	const handleOpen = () => {
-		// console.log('Dropdown: ', isOpen);
-
 		if (isOpen === undefined || isOpen === false) {
 			setIsDropdownOpen(!isDropdownOpen);
 		}

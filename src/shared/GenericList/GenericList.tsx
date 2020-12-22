@@ -1,4 +1,5 @@
 import React from 'react';
+import { noop } from '../../utils/js/noop';
 import styles from './genericlist.css';
 
 export interface IItem {

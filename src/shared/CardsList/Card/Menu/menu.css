@@ -1,17 +1,24 @@
 .menu {
-  position: absolute;
-  top: 17px;
-  right: 15px;
+	position: absolute;
+	top: 17px;
+	right: 15px;
+	padding: 0;
 }
 
-
+.dropdown {
+	position: absolute;
+	right: 0;
+	top: 10px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-radius: 3px;
+	background-color: var(--white);
+}
 
 @media all and (min-width: 1024px) {
-   .menu {
-    flex: 0 0;
-    top: unset;
-    right: unset;
-    margin: 0 0 0 auto;
-  }
+	.menu {
+		flex: 0 0;
+		top: unset;
+		right: unset;
+		margin: 0 0 0 auto;
+	}
 }
-
