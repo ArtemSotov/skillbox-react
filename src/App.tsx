@@ -1,3 +1,5 @@
+// yo react-ts-component-dir 
+
 import React, { Component } from "react";
 import "./main.global.css";
 import { hot } from "react-hot-loader/root";
