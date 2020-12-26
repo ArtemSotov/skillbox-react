@@ -1,26 +1,6 @@
-/**
- * font-size: 28px;
- * line-height: 33px;
- *
- * font-size: 20px;
- * line-height: 23px;
- *
- * font-size: 16px;
- * line-height: 19px;
- *
- * font-size: 14px;
- * line-height: 16px;
- *
- * font-size: 12px;
- * line-height: 14px;
- *
- * font-size: 10px;
- * line-height: 12px;
- *
- * span, h1234, p, div
- */
 import React from "react";
 import styles from "./text.css";
+import classNames from "classnames";
 
 type TSizes = 28 | 20 | 16 | 14 | 12 | 10;
 
@@ -46,8 +26,27 @@ interface ITextProps {
 	tabletSize?: TSizes;
 	desktopSize?: TSizes;
 	color?: EColor;
+	bold?: boolean;
 }
 
-export function Text({ As = "span", children }: ITextProps) {
-	return <As>{children}</As>;
+export function Text(props: ITextProps) {
+	const {
+		As = "span",
+		color = EColor.black,
+		bold = false,
+		children,
+		size,
+		mobileSize,
+		tabletSize,
+		desktopSize,
+	} = props;
+	const classes = classNames(
+		styles[`s${size}`],
+		styles[color],
+		{ [styles.bold]: bold },
+		{ [styles[`m${mobileSize}`]]: mobileSize },
+		{ [styles[`t${tabletSize}`]]: tabletSize },
+		{ [styles[`d${desktopSize}`]]: desktopSize }
+	);
+	return <As className={classes}>{children}</As>;
 }

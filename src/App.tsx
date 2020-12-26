@@ -1,4 +1,4 @@
-// yo react-ts-component-dir 
+// yo react-ts-component-dir
 
 import React, { Component } from "react";
 import "./main.global.css";
@@ -7,10 +7,15 @@ import { Layout } from "./shared/Layout";
 import { Header } from "./shared/Header";
 import { Content } from "./shared/Content";
 import { CardsList } from "./shared/CardsList";
-import { generateId, generateRandomString } from "./utils/react/generateRandomIndex";
+import {
+	generateId,
+	generateRandomString,
+} from "./utils/react/generateRandomIndex";
 import { GenericList } from "./shared/GenericList";
 import { merge } from "./utils/js/merge";
 import { Dropdown } from "./shared/Dropdown";
+import { EColor, Text } from "./shared/Text";
+import { Break } from "./shared/Break";
 
 // const LIST = [
 // 	{
@@ -46,8 +51,19 @@ function AppComponent() {
 						<GenericList list={LIST} />
 					</Dropdown>
 				</div> */}
+				<Text size={20} mobileSize={10} color={EColor.green}>
+					Labe11
+				</Text>
+				<Break size={8} tabletSize={16} top />
+				<Text size={20} tabletSize={10} bold>
+					Label2
+				</Text>
+				<Break size={20} inline />
+				<Text size={20} desktopSize={10}>
+					Label3
+				</Text>
 			</Content>
-		</Layout >
+		</Layout>
 	);
 }
 

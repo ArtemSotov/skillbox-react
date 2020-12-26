@@ -9,49 +9,57 @@ import { MenuItemsList } from "./MenuItemsList";
 
 const MenuList: IItem[] = [
 	{
-		text: 'Комментарии',
-		onClick: () => { console.log('Комментарии'); },
+		text: "Комментарии",
+		onClick: () => {
+			console.log("Комментарии");
+		},
 	},
 	{
-		text: 'Поделиться',
-		onClick: () => { console.log('Поделиться'); }
+		text: "Поделиться",
+		onClick: () => {
+			console.log("Поделиться");
+		},
 	},
 	{
-		text: 'Скрыть',
-		onClick: () => { console.log('Скрыть'); }
+		text: "Скрыть",
+		onClick: () => {
+			console.log("Скрыть");
+		},
 	},
 	{
-		text: 'Сохранить',
-		onClick: () => { console.log('Сохранить'); }
+		text: "Сохранить",
+		onClick: () => {
+			console.log("Сохранить");
+		},
 	},
 	{
-		text: 'Пожаловаться',
-		onClick: () => { console.log('Пожаловаться'); }
+		text: "Пожаловаться",
+		onClick: () => {
+			console.log("Пожаловаться");
+		},
 	},
 	{
-		text: 'Закрыть',
-		onClick: () => { console.log('Закрыть'); }
+		text: "Закрыть",
+		onClick: () => {
+			console.log("Закрыть");
+		},
 	},
 ].map(generateId);
 
 export function Menu() {
 	return (
 		<div className={styles.menu}>
-			<Dropdown
-				isOpen={false}
-				button={<MenuButton />}
-			>
+			<Dropdown isOpen={false} button={<MenuButton />}>
 				{/* <GenericList list={MenuList.map(merge({ As: 'a' as 'a', className: 'menuItem' }))} /> */}
 				<div className={styles.dropdown}>
-					<MenuItemsList />
+					<MenuItemsList postId={"123"} />
 					<button className={styles.closeButton}>
 						{/* <Text mobileSize={12} size={14} color={EColors.grey66}> */}
-							Закрыть
+						Закрыть
 						{/* </Text> */}
 					</button>
 				</div>
 			</Dropdown>
-
 		</div>
 	);
 }
