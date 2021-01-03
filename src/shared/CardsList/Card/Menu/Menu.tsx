@@ -3,6 +3,7 @@ import { merge } from "../../../../utils/js/merge";
 import { generateId } from "../../../../utils/react/generateRandomIndex";
 import { Dropdown } from "../../../Dropdown";
 import { GenericList, IItem } from "../../../GenericList";
+import { EColor, Text } from "../../../Text";
 import styles from "./menu.css";
 import { MenuButton } from "./MenuButton";
 import { MenuItemsList } from "./MenuItemsList";
@@ -50,16 +51,24 @@ export function Menu() {
 	return (
 		<div className={styles.menu}>
 			<Dropdown isOpen={false} button={<MenuButton />}>
-				{/* <GenericList list={MenuList.map(merge({ As: 'a' as 'a', className: 'menuItem' }))} /> */}
 				<div className={styles.dropdown}>
 					<MenuItemsList postId={"123"} />
 					<button className={styles.closeButton}>
-						{/* <Text mobileSize={12} size={14} color={EColors.grey66}> */}
-						Закрыть
-						{/* </Text> */}
+						<Text mobileSize={12} size={14} color={EColor.grey66}>
+							Закрыть
+						</Text>
 					</button>
 				</div>
 			</Dropdown>
+			{/* <Dropdown
+				// onClose={() => console.log('closed')}
+				// onOpen={() => console.log('opened')}
+				isOpen={false}
+				//button={<button>Test</button>}
+				button={<MenuButton />}
+			>
+				<GenericList list={MenuList.map(merge({ As: "a" as "a", className: "menuItem" }))} />
+			</Dropdown>{" "} */}
 		</div>
 	);
 }

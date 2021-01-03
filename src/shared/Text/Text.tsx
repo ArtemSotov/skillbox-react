@@ -30,16 +30,7 @@ interface ITextProps {
 }
 
 export function Text(props: ITextProps) {
-	const {
-		As = "span",
-		color = EColor.black,
-		bold = false,
-		children,
-		size,
-		mobileSize,
-		tabletSize,
-		desktopSize,
-	} = props;
+	const { As = "span", color = EColor.black, bold = false, children, size, mobileSize, tabletSize, desktopSize } = props;
 	const classes = classNames(
 		styles[`s${size}`],
 		styles[color],
