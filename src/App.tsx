@@ -1,4 +1,5 @@
 // yo react-ts-component-dir
+// https://www.figma.com/file/STABzVueKL3brf4aOgkvW2/Rd-(Mirror)?node-id=94%3A3575
 
 import React, { Component } from "react";
 import "./main.global.css";
@@ -16,6 +17,7 @@ import { merge } from "./utils/js/merge";
 import { Dropdown } from "./shared/Dropdown";
 import { EColor, Text } from "./shared/Text";
 import { Break } from "./shared/Break";
+import { Icon } from "./shared/Icon";
 
 // const LIST = [
 // 	{
@@ -51,7 +53,7 @@ function AppComponent() {
 						<GenericList list={LIST} />
 					</Dropdown>
 				</div> */}
-				<Text size={20} mobileSize={10} color={EColor.green}>
+				{/* <Text size={20} mobileSize={10} color={EColor.green}>
 					Labe11
 				</Text>
 				<Break size={8} tabletSize={16} top />
@@ -61,7 +63,8 @@ function AppComponent() {
 				<Break size={20} inline />
 				<Text size={20} desktopSize={10}>
 					Label3
-				</Text>
+				</Text> */}
+				<Icon />
 			</Content>
 		</Layout>
 	);
