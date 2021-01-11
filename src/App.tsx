@@ -8,16 +8,13 @@ import { Layout } from "./shared/Layout";
 import { Header } from "./shared/Header";
 import { Content } from "./shared/Content";
 import { CardsList } from "./shared/CardsList";
-import {
-	generateId,
-	generateRandomString,
-} from "./utils/react/generateRandomIndex";
+import { generateId, generateRandomString } from "./utils/react/generateRandomIndex";
 import { GenericList } from "./shared/GenericList";
 import { merge } from "./utils/js/merge";
 import { Dropdown } from "./shared/Dropdown";
 import { EColor, Text } from "./shared/Text";
 import { Break } from "./shared/Break";
-import { Icon } from "./shared/Icon";
+import { EIcons, Icon } from "./shared/Icon";
 
 // const LIST = [
 // 	{
@@ -64,7 +61,7 @@ function AppComponent() {
 				<Text size={20} desktopSize={10}>
 					Label3
 				</Text> */}
-				<Icon />
+				<Icon name={EIcons.hidden} size={40} />
 			</Content>
 		</Layout>
 	);

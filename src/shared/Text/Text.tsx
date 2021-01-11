@@ -27,6 +27,7 @@ interface ITextProps {
 	desktopSize?: TSizes;
 	color?: EColor;
 	bold?: boolean;
+	// align?: "left" | "center" | "right";
 }
 
 export function Text(props: ITextProps) {
@@ -34,6 +35,7 @@ export function Text(props: ITextProps) {
 	const classes = classNames(
 		styles[`s${size}`],
 		styles[color],
+		// styles[`align${align}`],
 		{ [styles.bold]: bold },
 		{ [styles[`m${mobileSize}`]]: mobileSize },
 		{ [styles[`t${tabletSize}`]]: tabletSize },
