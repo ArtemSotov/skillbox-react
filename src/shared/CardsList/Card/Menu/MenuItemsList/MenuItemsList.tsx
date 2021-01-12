@@ -19,7 +19,12 @@ export function MenuItemsList({ postId }: IMenuItemsListProps) {
 			<li className={styles.divider} />
 			<li className={styles.menuItem}>
 				<Icon name={EIcons.share} />
-				<Text mobileSize={12} size={14} color={EColor.grey66}>
+				<Text
+					mobileSize={12}
+					size={14}
+					color={EColor.grey66}
+					colorHover={EColor.orange}
+				>
 					Поделиться
 				</Text>
 			</li>

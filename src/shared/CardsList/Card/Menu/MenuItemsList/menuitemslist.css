@@ -9,6 +9,10 @@
 	align-items: center;
 }
 
+.menuItem:hover {
+	cursor: pointer;
+}
+
 .menuItem > svg + span {
 	margin-left: 7px;
 }

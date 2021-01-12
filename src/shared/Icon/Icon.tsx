@@ -1,4 +1,5 @@
 import React, { CSSProperties } from "react";
+import { EColor } from "../Text";
 import styles from "./icon.css";
 
 type TIcon = {
@@ -59,7 +60,8 @@ const IconsArr: TIcon[] = [
 	{
 		w: 16,
 		h: 14,
-		d: "M0 14H16L8 0L0 14ZM8.72727 11.7895H7.27273V10.3158H8.72727V11.7895ZM8.72727 8.8421H7.27273V5.89474H8.72727V8.8421Z",
+		d:
+			"M0 14H16L8 0L0 14ZM8.72727 11.7895H7.27273V10.3158H8.72727V11.7895ZM8.72727 8.8421H7.27273V5.89474H8.72727V8.8421Z",
 		fill: "#999999",
 	},
 ];
@@ -67,6 +69,7 @@ const IconsArr: TIcon[] = [
 interface IIconProps {
 	name?: EIcons;
 	size?: number;
+	colorHover?: EColor;
 }
 
 export function Icon(props: IIconProps) {
@@ -78,7 +81,14 @@ export function Icon(props: IIconProps) {
 		height: size + "px",
 	};
 	return (
-		<svg width={icon.w} height={icon.h} viewBox={curBox} style={curStyle} fill="none" xmlns="http://www.w3.org/2000/svg">
+		<svg
+			width={icon.w}
+			height={icon.h}
+			viewBox={curBox}
+			style={curStyle}
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
 			<path d={icon.d} fill={icon.fill} />
 		</svg>
 	);
