@@ -26,7 +26,6 @@ interface ITextProps {
 	tabletSize?: TSizes;
 	desktopSize?: TSizes;
 	color?: EColor;
-	colorHover?: EColor;
 	bold?: boolean;
 	// align?: "left" | "center" | "right";
 }
@@ -35,7 +34,6 @@ export function Text(props: ITextProps) {
 	const {
 		As = "span",
 		color = EColor.black,
-		colorHover = color,
 		bold = false,
 		children,
 		size,
@@ -46,8 +44,6 @@ export function Text(props: ITextProps) {
 	const classes = classNames(
 		styles[`s${size}`],
 		styles[color],
-		styles[`h_${colorHover}`],
-		// styles[`align${align}`],
 		{ [styles.bold]: bold },
 		{ [styles[`m${mobileSize}`]]: mobileSize },
 		{ [styles[`t${tabletSize}`]]: tabletSize },

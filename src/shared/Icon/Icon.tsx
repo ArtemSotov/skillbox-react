@@ -1,5 +1,4 @@
 import React, { CSSProperties } from "react";
-import { EColor } from "../Text";
 import styles from "./icon.css";
 
 type TIcon = {
@@ -69,7 +68,6 @@ const IconsArr: TIcon[] = [
 interface IIconProps {
 	name?: EIcons;
 	size?: number;
-	colorHover?: EColor;
 }
 
 export function Icon(props: IIconProps) {
@@ -91,5 +89,5 @@ export function Icon(props: IIconProps) {
 		>
 			<path d={icon.d} fill={icon.fill} />
 		</svg>
-	);
+	); // className={classNames(styles[`h_${colorHover}`])}
 }

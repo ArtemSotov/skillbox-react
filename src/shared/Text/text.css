@@ -65,40 +65,6 @@
 	color: var(--grey66);
 }
 
-.h_black:hover {
-	color: var(--black);
-}
-.h_orange:hover {
-	color: var(--orange);
-}
-.h_green:hover {
-	color: var(--green);
-}
-.h_white:hover {
-	color: var(--white);
-}
-.h_greyF4:hover {
-	color: var(--greyF4);
-}
-.h_greyF3:hover {
-	color: var(--greyF3);
-}
-.h_greyEC:hover {
-	color: var(--greyEC);
-}
-.h_greyD9:hover {
-	color: var(--greyD9);
-}
-.h_greyC4:hover {
-	color: var(--greyC4);
-}
-.h_grey99:hover {
-	color: var(--grey99);
-}
-.h_grey66:hover {
-	color: var(--grey66);
-}
-
 .bold {
 	font-weight: bold;
 }

@@ -30,3 +30,9 @@
 		margin: 0 0 0 auto;
 	}
 }
+
+@media all and (min-width: 1540px) {
+	.closeButton {
+		display: none;
+	}
+}
