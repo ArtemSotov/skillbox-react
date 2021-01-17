@@ -10,22 +10,10 @@ interface IUserBlockProps {
 }
 
 export function UserBlock({ avatarSrc, username }: IUserBlockProps) {
+	const url = `https://www.reddit.com/api/v1/authorize?client_id=${process.env.client_id}&response_type=code&state=random_string&redirect_uri=http://localhost:3000/auth&duration=permanent&scope=read submit identity`;
 	return (
-		<a
-			href="https://www.reddit.com/api/v1/authorize?client_id=CLIENT_ID&response_type=TYPE&state=RANDOM_STRING&redirect_uri=URI&duration=DURATION&scope=SCOPE_STRING"
-			className={styles.userBox}
-		>
-			<div className={styles.avatarBox}>
-				{avatarSrc ? (
-					<img
-						src={avatarSrc}
-						alt="user avatar"
-						className={styles.avatarImage}
-					/>
-				) : (
-					<IconAnon />
-				)}
-			</div>
+		<a href={url} className={styles.userBox}>
+			<div className={styles.avatarBox}>{avatarSrc ? <img src={avatarSrc} alt="user avatar" className={styles.avatarImage} /> : <IconAnon />}</div>
 
 			<div className={styles.username}>
 				<Break size={12} />

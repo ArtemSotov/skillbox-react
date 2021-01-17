@@ -8,16 +8,14 @@ import { Layout } from "./shared/Layout";
 import { Header } from "./shared/Header";
 import { Content } from "./shared/Content";
 import { CardsList } from "./shared/CardsList";
-import {
-	generateId,
-	generateRandomString,
-} from "./utils/react/generateRandomIndex";
+import { generateId, generateRandomString } from "./utils/react/generateRandomIndex";
 import { GenericList } from "./shared/GenericList";
 import { merge } from "./utils/js/merge";
 import { Dropdown } from "./shared/Dropdown";
 import { EColor, Text } from "./shared/Text";
 import { Break } from "./shared/Break";
 import { EIcons, Icon } from "./shared/Icon";
+import { BlockIcon, IconEmpty, MenuIcon, WarningIcon } from "./shared/Icons";
 
 // const LIST = [
 // 	{
