@@ -1,22 +1,42 @@
 import express from "express";
 import ReactDOM from "react-dom/server";
 import { App } from "../App";
-// import { Header } from "../shared/Header";
 import { indexTemplate } from "./indexTemplate";
+import axios from "axios";
+import https from "https";
+
+//require("https").globalAgent.options.ca = require("ssl-root-cas/latest").create();
 
 const app = express();
 
 app.use("/static", express.static("./dist/client/"));
 
 app.get("/", (req, res) => {
-  res.send(indexTemplate(ReactDOM.renderToString(App())));
+	res.send(indexTemplate(ReactDOM.renderToString(App())));
 });
 
 app.get("/auth", (req, res) => {
-	// req.query.code;
+	axios
+		.post(
+			"https://www.reddit.com/api/v1/access_token",
+			`grant_type=authorization_code&code=${req.query.code}&redirect_uri=http://localhost:3000/auth`,
+			{
+				auth: {
+					username: process.env.CLIENT_ID,
+					password: "kQjm8ISUhyfsGmSqFsoJSOmjUt2F9A",
+				},
+				headers: { "Content-Type": "application/x-www-form-urlencoded" },
+				httpAgent: new https.Agent({
+					rejectUnauthorized: false,
+				}),
+			}
+		)
+		.then((response) => console.log(response))
+		.catch((err) => console.log(err));
+
 	res.send(indexTemplate(ReactDOM.renderToString(App())));
-  });
+});
 
 app.listen(3000, () => {
-  console.log("Server started on http://localhost:3000");
+	console.log("Server started on http://localhost:3000");
 });
