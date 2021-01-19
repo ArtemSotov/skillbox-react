@@ -5,10 +5,12 @@ import { indexTemplate } from "./indexTemplate";
 import axios from "axios";
 import https from "https";
 
-//require("https").globalAgent.options.ca = require("ssl-root-cas/latest").create();
+// только для тестирования. Отключает SSL
+process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
 const app = express();
 
+process.env;
 app.use("/static", express.static("./dist/client/"));
 
 app.get("/", (req, res) => {
@@ -17,18 +19,24 @@ app.get("/", (req, res) => {
 
 app.get("/auth", (req, res) => {
 	axios
-		.post("https://www.reddit.com/api/v1/access_token", `grant_type=authorization_code&code=${req.query.code}&redirect_uri=http://localhost:3000/auth`, {
-			auth: {
-				username: process.env.CLIENT_ID,
-				password: "kQjm8ISUhyfsGmSqFsoJSOmjUt2F9A",
-			},
-			headers: { "Content-Type": "application/x-www-form-urlencoded" },
-			httpAgent: new https.Agent({
-				rejectUnauthorized: false,
-			}),
-		})
+		.post(
+			"https://www.reddit.com/api/v1/access_token",
+			`grant_type=authorization_code&code=${req.query.code}&redirect_uri=http://localhost:3000/auth`,
+			{
+				auth: {
+					username: process.env.CLIENT_ID,
+					password: "kQjm8ISUhyfsGmSqFsoJSOmjUt2F9A",
+				},
+				headers: { "Content-Type": "application/x-www-form-urlencoded" },
+				httpAgent: new https.Agent({
+					rejectUnauthorized: false,
+				}),
+			}
+		)
 		.then(({ data }) => {
-			res.send(indexTemplate(ReactDOM.renderToString(App()), data["access_token"]));
+			res.send(
+				indexTemplate(ReactDOM.renderToString(App()), data["access_token"])
+			);
 		})
 		.catch(console.log);
 });
