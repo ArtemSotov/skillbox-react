@@ -10,17 +10,20 @@ import { Header } from "./shared/Header";
 import { Content } from "./shared/Content";
 import { CardsList } from "./shared/CardsList";
 import { useToken } from "./hooks/useToken";
+import { tokenContext } from "./shared/context/tokenContext";
 
 function AppComponent() {
 	const [token] = useToken();
-
+	const { Provider } = tokenContext;
 	return (
-		<Layout>
-			<Header token={token} />
-			<Content>
-				<CardsList />
-			</Content>
-		</Layout>
+		<Provider value={token}>
+			<Layout>
+				<Header />
+				<Content>
+					<CardsList />
+				</Content>
+			</Layout>
+		</Provider>
 	);
 }
 
