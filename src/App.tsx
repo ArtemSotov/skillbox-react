@@ -12,9 +12,16 @@ import { CardsList } from "./shared/CardsList";
 import { useToken } from "./hooks/useToken";
 import { tokenContext } from "./shared/context/tokenContext";
 import { UserContextProvider } from "./shared/context/userContext";
+import { usePostsData } from "./hooks/usePostsData";
+import axios from "axios";
 
 function AppComponent() {
 	const [token] = useToken();
+	axios
+		.get("https://www.reddit.com/dev/api/#GET_best", {
+			headers: { Authorization: `bearer ${token}` },
+		})
+		.then(console.log);
 	// const { Provider } = tokenContext;
 	return (
 		<tokenContext.Provider value={token}>
