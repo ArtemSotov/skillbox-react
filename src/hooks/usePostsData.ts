@@ -9,10 +9,13 @@ export function usePostsData() {
 	const token = useContext(tokenContext);
 	useEffect(() => {
 		axios
-			.get("https://oauth.reddit.com/best", {
+			.get("https://oauth.reddit.com/api/v1/me", {
 				headers: { Authorization: `bearer ${token}` },
 			})
-			.then(console.log)
+			.then((resp) => {
+				const userData = resp.data;
+				console.log('userData: ',userData);
+			})
 			.catch(console.log);
 	}, [token]);
 	//return [data];

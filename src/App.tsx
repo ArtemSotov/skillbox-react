@@ -17,12 +17,12 @@ import axios from "axios";
 
 function AppComponent() {
 	const [token] = useToken();
-	axios
-		.get("https://www.reddit.com/dev/api/#GET_best", {
-			headers: { Authorization: `bearer ${token}` },
-		})
-		.then(console.log);
-	// const { Provider } = tokenContext;
+	// axios
+	// 	.get("https://www.reddit.com/dev/api/#GET_best", {
+	// 		headers: { Authorization: `bearer ${token}` },
+	// 	})
+	// 	.then(console.log);
+	const { Provider } = tokenContext;
 	return (
 		<tokenContext.Provider value={token}>
 			<UserContextProvider>
