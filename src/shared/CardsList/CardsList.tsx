@@ -4,7 +4,7 @@ import styles from "./cardslist.css";
 import axios from "axios";
 import { useToken } from "../../hooks/useToken";
 
-interface IPostData {
+interface IPost {
 	author?: string;
 	title?: string;
 	url?: string;
@@ -14,7 +14,7 @@ interface IPostData {
 
 export function CardsList() {
 	const [token] = useToken();
-	const [data, setData] = useState<IPostData[]>([]);
+	const [data, setData] = useState<IPost[]>([]);
 	useEffect(() => {
 		axios
 			.get("https://oauth.reddit.com/best.json", {
@@ -24,7 +24,7 @@ export function CardsList() {
 				const respList: any[] = resp.data.data.children;
 				console.log("respList: ", respList);
 
-				const dataList: IPostData[] = [];
+				const dataList: IPost[] = [];
 				for (let i = 0; i < respList.length; i++) {
 					dataList.push({
 						author: respList[i].data.author,
@@ -40,9 +40,14 @@ export function CardsList() {
 			})
 			.catch(console.log);
 	}, []);
+	const url = "https://external-preview.redd.it/ZbrXwT5ECy9xffhOTtByNZIWoasL7lvhdKmUat87yKc.jpg?auto=webp&s=ecad8d62f6627429630d2a34f8dbef394aea47b0";
+	console.log("data: ", data);
+
 	return (
 		<ul className={styles.cardsList}>
-			<Card />
+			{data.map((p) => {
+				<li>{p.title}</li>;
+			})}
 		</ul>
 	);
 }
