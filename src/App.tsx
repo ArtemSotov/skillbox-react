@@ -12,8 +12,8 @@ import { CardsList } from "./shared/CardsList";
 import { useToken } from "./hooks/useToken";
 import { tokenContext } from "./shared/context/tokenContext";
 import { UserContextProvider } from "./shared/context/userContext";
-import { usePostsData } from "./hooks/usePostsData";
-import axios from "axios";
+// import { usePostsData } from "./hooks/usePostsData";
+// import axios from "axios";
 
 function AppComponent() {
 	const [token] = useToken();
