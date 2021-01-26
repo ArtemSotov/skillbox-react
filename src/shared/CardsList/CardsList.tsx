@@ -40,14 +40,17 @@ export function CardsList() {
 			})
 			.catch(console.log);
 	}, []);
-	const url = "https://external-preview.redd.it/ZbrXwT5ECy9xffhOTtByNZIWoasL7lvhdKmUat87yKc.jpg?auto=webp&s=ecad8d62f6627429630d2a34f8dbef394aea47b0";
+	const url =
+		"https://external-preview.redd.it/ZbrXwT5ECy9xffhOTtByNZIWoasL7lvhdKmUat87yKc.jpg?auto=webp&s=ecad8d62f6627429630d2a34f8dbef394aea47b0";
 	console.log("data: ", data);
+	const dt: IPost[] = [{ title: "123" }, { title: "456" }];
+	console.log("dt: ", dt);
 
 	return (
 		<ul className={styles.cardsList}>
-			{data.map((p) => {
-				<li>{p.title}</li>;
-			})}
+			{dt.map((p) => (
+				<li>{p.title}</li>
+			))}
 		</ul>
 	);
 }
