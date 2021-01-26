@@ -20,8 +20,8 @@ export function Card(props: IPostProps) {
 
 	return (
 		<li className={styles.card}>
-			<TextContent />
-			<Preview />
+			<TextContent title={title} url={url} author={author} />
+			<Preview previewUrl={preview} />
 			<Menu />
 			<Controls />
 		</li>

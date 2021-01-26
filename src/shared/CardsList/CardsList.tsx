@@ -3,6 +3,7 @@ import { Card } from "./Card/Card";
 import styles from "./cardslist.css";
 import axios from "axios";
 import { useToken } from "../../hooks/useToken";
+import { Text } from "../Text";
 
 interface IPost {
 	author?: string;
@@ -22,8 +23,6 @@ export function CardsList() {
 			})
 			.then((resp) => {
 				const respList: any[] = resp.data.data.children;
-				console.log("respList: ", respList);
-
 				const dataList: IPost[] = [];
 				for (let i = 0; i < respList.length; i++) {
 					dataList.push({
@@ -40,16 +39,12 @@ export function CardsList() {
 			})
 			.catch(console.log);
 	}, []);
-	const url =
-		"https://external-preview.redd.it/ZbrXwT5ECy9xffhOTtByNZIWoasL7lvhdKmUat87yKc.jpg?auto=webp&s=ecad8d62f6627429630d2a34f8dbef394aea47b0";
+	const url = "https://external-preview.redd.it/ZbrXwT5ECy9xffhOTtByNZIWoasL7lvhdKmUat87yKc.jpg?auto=webp&s=ecad8d62f6627429630d2a34f8dbef394aea47b0";
 	console.log("data: ", data);
-	const dt: IPost[] = [{ title: "123" }, { title: "456" }];
-	console.log("dt: ", dt);
-
 	return (
 		<ul className={styles.cardsList}>
-			{dt.map((p) => (
-				<li>{p.title}</li>
+			{data.map((p) => (
+				<Card preview={p.preview?.replace("&amp;", "&")} title={p.title} author={p.author} url={p.url} />
 			))}
 		</ul>
 	);
