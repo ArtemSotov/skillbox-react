@@ -10,7 +10,8 @@ export const indexTemplate = (content, token) => `
 	</script>
   </head>
   <body>
-    <div id='react_root'>${content}</div>
+	<div id='react_root'>${content}</div>
+	<div id='modal_root'></div>
   </body>
 </html>
 `;

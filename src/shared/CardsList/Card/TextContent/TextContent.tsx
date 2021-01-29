@@ -1,6 +1,7 @@
 import React from "react";
 import { Text } from "../../../Text";
 import styles from "./textcontent.css";
+import { Title } from "./Title";
 
 interface ITextContentProps {
 	title?: string;
@@ -24,15 +25,12 @@ export function TextContent(props: ITextContentProps) {
 					</a>
 				</div>
 				<span className={styles.createdAd}>
-					<span className={styles.publishedLabel}>опубликовано </span>4 часа назад
+					<span className={styles.publishedLabel}>опубликовано </span>4 часа
+					назад
 				</span>
 			</div>
 			<br />
-			<h2 className={styles.title}>
-				<a href={url} className={styles.postLink}>
-					{title}
-				</a>
-			</h2>
+			<Title title={title} />
 		</div>
 	);
 }
