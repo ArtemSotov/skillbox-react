@@ -7,7 +7,6 @@ interface IPreviewProps {
 
 export function Preview(props: IPreviewProps) {
 	const { previewUrl = "" } = props;
-	console.log("Preview previewUrl: ", previewUrl);
 	return (
 		<div className={styles.preview}>
 			<img className={styles.previewImg} src={previewUrl} />

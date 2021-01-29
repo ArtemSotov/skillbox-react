@@ -21,7 +21,13 @@ export function Title({ title }: ITitleProps) {
 				{title}
 			</a>
 
-			{isModalOpened && <Post />}
+			{isModalOpened && (
+				<Post
+					onClose={() => {
+						setIsModelOpened(false);
+					}}
+				/>
+			)}
 		</h2>
 	);
 }
