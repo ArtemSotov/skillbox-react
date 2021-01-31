@@ -2,7 +2,7 @@
 // https://www.figma.com/file/STABzVueKL3brf4aOgkvW2/Rd-(Mirror)?node-id=94%3A3575
 // Документация к Reddit Api: reddit.com/dev/api/oauth
 
-import React from "react";
+import React, { useState } from "react";
 import "./main.global.css";
 import { hot } from "react-hot-loader/root";
 import { Layout } from "./shared/Layout";
@@ -13,30 +13,30 @@ import { useToken } from "./hooks/useToken";
 import { tokenContext } from "./shared/context/tokenContext";
 import { UserContextProvider } from "./shared/context/userContext";
 import { PostsContextProvider } from "./shared/context/postsContext";
+import { commentContext } from "./shared/context/commentContext";
 // import { usePostsData } from "./hooks/usePostsData";
 // import axios from "axios";
 
 function AppComponent() {
 	const [token] = useToken();
-	// axios
-	// 	.get("https://www.reddit.com/dev/api/#GET_best", {
-	// 		headers: { Authorization: `bearer ${token}` },
-	// 	})
-	// 	.then(console.log);
+	const [commentValue, setCommentValue] = useState("");
 	const { Provider } = tokenContext;
+	const CommentProvider = commentContext.Provider;
 	return (
-		<tokenContext.Provider value={token}>
-			<UserContextProvider>
-				<PostsContextProvider>
-					<Layout>
-						<Header />
-						<Content>
-							<CardsList />
-						</Content>
-					</Layout>
-				</PostsContextProvider>
-			</UserContextProvider>
-		</tokenContext.Provider>
+		<CommentProvider value={{ value: commentValue, onChange: setCommentValue }}>
+			<tokenContext.Provider value={token}>
+				<UserContextProvider>
+					<PostsContextProvider>
+						<Layout>
+							<Header />
+							<Content>
+								<CardsList />
+							</Content>
+						</Layout>
+					</PostsContextProvider>
+				</UserContextProvider>
+			</tokenContext.Provider>
+		</CommentProvider>
 	);
 }
 
