@@ -1,10 +1,12 @@
 .container {
 	width: 100%;
 	flex: 1 1 0%;
+	/* border: 2px solid red; */
 }
 
 .listContainer {
 	position: relative;
+	border: 2px solid green;
 }
 
 .list {

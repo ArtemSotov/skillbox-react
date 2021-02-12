@@ -60,15 +60,6 @@ export function Menu() {
 					</button>
 				</div>
 			</Dropdown>
-			{/* <Dropdown
-				// onClose={() => console.log('closed')}
-				// onOpen={() => console.log('opened')}
-				isOpen={false}
-				//button={<button>Test</button>}
-				button={<MenuButton />}
-			>
-				<GenericList list={MenuList.map(merge({ As: "a" as "a", className: "menuItem" }))} />
-			</Dropdown>{" "} */}
 		</div>
 	);
 }
