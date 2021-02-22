@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import { merge } from "../../../../utils/js/merge";
 import { generateId } from "../../../../utils/react/generateRandomIndex";
 import { Dropdown } from "../../../Dropdown";
+import { DropdownPortal } from "../../../DropdownPortal";
 import { GenericList, IItem } from "../../../GenericList";
 import { EColor, Text } from "../../../Text";
 import styles from "./menu.css";
@@ -48,9 +49,11 @@ const MenuList: IItem[] = [
 ].map(generateId);
 
 export function Menu() {
+	const ref = useRef<HTMLDivElement>(null);
+
 	return (
-		<div className={styles.menu}>
-			<Dropdown isOpen={false} button={<MenuButton />}>
+		<div className={styles.menu} ref={ref}>
+			<DropdownPortal isOpen={false} button={<MenuButton />} parent={ref}>
 				<div className={styles.dropdown}>
 					<MenuItemsList postId={"123"} />
 					<button className={styles.closeButton}>
@@ -59,7 +62,7 @@ export function Menu() {
 						</Text>
 					</button>
 				</div>
-			</Dropdown>
+			</DropdownPortal>
 		</div>
 	);
 }
