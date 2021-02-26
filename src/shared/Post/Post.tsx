@@ -1,18 +1,47 @@
 import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { CommentForm } from "../CommentForm";
+import { CommentList, IComment } from "../CommentForm/CommentList";
 import styles from "./post.css";
 
 interface IPost {
 	onClose?: () => void;
 }
 
+const commentList: IComment[] = [
+	{
+		text: "comment 1",
+		child: [
+			{
+				text: "child 1-1",
+				child: [
+					{
+						text: "child 1-1-1",
+					},
+					{
+						text: "child 1-1-2",
+					},
+				],
+			},
+			{
+				text: "child 1-2",
+			},
+		],
+	},
+	{
+		text: "comment 2",
+	},
+];
+
 export function Post(props: IPost) {
 	const ref = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		function handleClick(event: MouseEvent) {
-			if (event.target instanceof Node && !ref.current?.contains(event.target)) {
+			if (
+				event.target instanceof Node &&
+				!ref.current?.contains(event.target)
+			) {
 				props.onClose?.();
 			}
 		}
@@ -27,7 +56,9 @@ export function Post(props: IPost) {
 
 	return ReactDOM.createPortal(
 		<div className={styles.modal} ref={ref}>
-			<h2>Следует отметить, что новая модель организационной деятельности поможет</h2>
+			<h2>
+				Следует отметить, что новая модель организационной деятельности поможет
+			</h2>
 
 			<div className={styles.content}>
 				<p>Есть над чем задуматься</p>
@@ -36,6 +67,8 @@ export function Post(props: IPost) {
 			</div>
 
 			<CommentForm />
+			<hr />
+			<CommentList list={commentList} />
 		</div>,
 		node
 	);

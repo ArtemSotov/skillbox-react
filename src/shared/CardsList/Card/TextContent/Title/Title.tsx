@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Post } from "../../../../Post";
 import styles from "./title.css";
 
