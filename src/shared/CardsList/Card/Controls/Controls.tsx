@@ -5,11 +5,11 @@ import styles from "./controls.css";
 import { KarmaCounter } from "./KarmaCounter";
 
 export function Controls() {
-  return (
-    <div className={styles.controls}>
-      <KarmaCounter />
-      <CommentsButton />
-      <Actions />
-    </div>
-  );
+	return (
+		<div className={styles.controls}>
+			<KarmaCounter value={234} />
+			<CommentsButton />
+			<Actions />
+		</div>
+	);
 }

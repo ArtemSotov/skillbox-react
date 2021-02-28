@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { getOffsetSum } from "../../utils/js/coord";
 import { noop } from "../../utils/js/noop";
@@ -28,8 +28,11 @@ export function DropdownPortal({ button, children, isOpen, onClose = noop, onOpe
 
 	// useEffect(() => {
 	// 	function handleClick(event: MouseEvent) {
-	// 		const tmp = event.target instanceof Node && !ref.current?.contains(event.target);
-	// 		console.log("tmp: ", tmp);
+	// 		// if (event.target instanceof Node && !ref.current?.contains(event.target)) {
+	// 		// 	// setIsDropdownOpen(false);
+
+	// 		// }
+	// 		console.log(isDropdownOpen);
 	// 	}
 	// 	document.addEventListener("click", handleClick);
 	// 	return () => {

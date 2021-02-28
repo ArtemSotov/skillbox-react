@@ -1,0 +1,48 @@
+.leftBorder {
+	width: 3px;
+	min-width: 3px;
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+/* .leftBorder > svg {
+	height: 100%;
+	width: 3px;
+	min-width: 3px;
+} */
+
+.divBorder {
+	width: 3px;
+	min-width: 3px;
+	height: 100%;
+	background-color: var(--greyD9);
+}
+
+.divKarma {
+	width: 0;
+	margin-left: -3px;
+	padding-bottom: 20px;
+}
+
+.commentMain {
+	/* border: 1px dashed red; */
+	display: flex;
+	padding-bottom: 20px;
+}
+
+.commentGroup {
+	/* border: 1px dashed green; */
+	padding-bottom: 20px;
+}
+.commentItem {
+	/* display: flex; */
+	padding-left: 30px;
+}
+
+.commentText {
+	display: block;
+}
+
+.commentChild {
+	padding-left: 30px;
+}

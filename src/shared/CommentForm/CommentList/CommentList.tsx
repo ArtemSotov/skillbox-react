@@ -1,8 +1,11 @@
 import React from "react";
+import { KarmaCounter } from "../../CardsList/Card/Controls/KarmaCounter";
+import { CommentItem } from "./CommentItem";
 import styles from "./commentlist.css";
 
 export interface IComment {
 	text: string;
+	valueKarma?: number;
 	child?: IComment[];
 }
 
@@ -14,14 +17,14 @@ export function CommentList({ list }: ICommentListProps) {
 	console.log("list: ", list);
 	return (
 		<>
-			{list.map(({ text, child }) => (
+			{list.map((item) => (
 				<div className={styles.commentText}>
-					{text}
-					{!!child && (
+					<CommentItem text={item.text} valueKarma={item.valueKarma} child={item.child} />
+					{/* {!!child && (
 						<div className={styles.commentChild}>
 							<CommentList list={child} />
 						</div>
-					)}
+					)} */}
 				</div>
 			))}
 		</>
