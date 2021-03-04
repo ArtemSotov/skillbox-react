@@ -15,7 +15,7 @@ export function usePostsData() {
 	const token = useContext(tokenContext);
 	useEffect(() => {
 		axios
-			.get("https://oauth.reddit.com/best.json?limit=3", {
+			.get("https://oauth.reddit.com/best.json?limit=1", {
 				headers: { Authorization: `bearer ${token}` },
 			})
 			.then((resp) => {

@@ -14,10 +14,19 @@ interface IDropdownProps {
 	parent: React.RefObject<HTMLDivElement>;
 }
 
-export function DropdownPortal({ button, children, isOpen, onClose = noop, onOpen = noop, parent }: IDropdownProps) {
+export function DropdownPortal({
+	button,
+	children,
+	isOpen,
+	onClose = noop,
+	onOpen = noop,
+	parent,
+}: IDropdownProps) {
 	const [isDropdownOpen, setIsDropdownOpen] = React.useState(isOpen);
 	React.useEffect(() => setIsDropdownOpen(isOpen), [isOpen]);
-	React.useEffect(() => (isDropdownOpen ? onOpen() : onClose()), [isDropdownOpen]);
+	React.useEffect(() => (isDropdownOpen ? onOpen() : onClose()), [
+		isDropdownOpen,
+	]);
 	const handleOpen = () => {
 		//	if (isOpen === undefined || isOpen === false) {
 		setIsDropdownOpen(!isDropdownOpen);
@@ -49,9 +58,10 @@ export function DropdownPortal({ button, children, isOpen, onClose = noop, onOpe
 		const coord = getOffsetSum(parent.current);
 		setStyle({
 			position: "absolute",
-			top: coord.top + "px",
-			left: coord.left + "px",
+			top: coord.top + 20 + "px",
+			left: coord.left - 10 + "px",
 		});
+		//console.log("coord.left:", coord.left);
 	}, []);
 
 	return ReactDOM.createPortal(
@@ -59,7 +69,10 @@ export function DropdownPortal({ button, children, isOpen, onClose = noop, onOpe
 			<div onClick={handleOpen}>{button}</div>
 			{isDropdownOpen && (
 				<div className={styles.listContainer}>
-					<div className={styles.list} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+					<div
+						className={styles.list}
+						onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+					>
 						{children}
 					</div>
 				</div>
