@@ -2,6 +2,7 @@ import React from "react";
 import { KarmaCounter } from "../../../CardsList/Card/Controls/KarmaCounter";
 import { AuthorInfo } from "../../../CardsList/Card/TextContent/AuthorInfo";
 import { CommentList, IComment } from "../CommentList";
+import { CommentMenu } from "../CommentMenu";
 import styles from "./commentitem.css";
 
 export function CommentItem({ text, valueKarma, child }: IComment) {
@@ -19,8 +20,9 @@ export function CommentItem({ text, valueKarma, child }: IComment) {
 					<AuthorInfo author="Михаил Рогов" />
 					<br />
 					<div>
-						<span className={styles.commetnText}>{text}</span>
+						<span className={styles.commentText}>{text}</span>
 					</div>
+					<CommentMenu />
 				</div>
 				{!!child && (
 					<div className={styles.commentChild}>

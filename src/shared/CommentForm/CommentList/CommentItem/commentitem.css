@@ -27,12 +27,13 @@
 .commentMain {
 	/* border: 1px dashed red; */
 	display: flex;
-	padding-bottom: 20px;
+	padding-top: 27px;
 }
 
 .commentGroup {
 	/* border: 1px dashed green; */
-	padding-bottom: 20px;
+	/* padding-bottom: 20px; */
+	padding-top: 6px;
 }
 .commentItem {
 	/* display: flex; */
@@ -41,6 +42,12 @@
 
 .commentText {
 	display: block;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 16px;
+	color: var(--grey33);
 }
 
 .commentChild {

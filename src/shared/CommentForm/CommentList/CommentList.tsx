@@ -18,8 +18,12 @@ export function CommentList({ list }: ICommentListProps) {
 	return (
 		<>
 			{list.map((item) => (
-				<div className={styles.commentText}>
-					<CommentItem text={item.text} valueKarma={item.valueKarma} child={item.child} />
+				<div className={styles.commentText1}>
+					<CommentItem
+						text={item.text}
+						valueKarma={item.valueKarma}
+						child={item.child}
+					/>
 					{/* {!!child && (
 						<div className={styles.commentChild}>
 							<CommentList list={child} />

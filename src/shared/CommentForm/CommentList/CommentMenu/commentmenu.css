@@ -1,0 +1,27 @@
+.menuItemsList {
+	padding-top: 10px;
+}
+
+.menuItemsList {
+	margin: 0;
+}
+
+.menuItem {
+	display: inline;
+	margin-right: 27px;
+}
+
+.menuItem:hover {
+	cursor: pointer;
+}
+
+.menuItem > div + span {
+	margin-left: 7px;
+}
+
+.menuItem:hover svg > path {
+	fill: var(--orange);
+}
+.menuItem:hover span {
+	color: var(--orange);
+}
