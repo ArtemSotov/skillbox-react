@@ -9,44 +9,44 @@ import styles from "./menu.css";
 import { MenuButton } from "./MenuButton";
 import { MenuItemsList } from "./MenuItemsList";
 
-const MenuList: IItem[] = [
-	{
-		text: "Комментарии",
-		onClick: () => {
-			console.log("Комментарии");
-		},
-	},
-	{
-		text: "Поделиться",
-		onClick: () => {
-			console.log("Поделиться");
-		},
-	},
-	{
-		text: "Скрыть",
-		onClick: () => {
-			console.log("Скрыть");
-		},
-	},
-	{
-		text: "Сохранить",
-		onClick: () => {
-			console.log("Сохранить");
-		},
-	},
-	{
-		text: "Пожаловаться",
-		onClick: () => {
-			console.log("Пожаловаться");
-		},
-	},
-	{
-		text: "Закрыть",
-		onClick: () => {
-			console.log("Закрыть");
-		},
-	},
-].map(generateId);
+// const MenuList: IItem[] = [
+// 	{
+// 		text: "Комментарии",
+// 		onClick: () => {
+// 			console.log("Комментарии");
+// 		},
+// 	},
+// 	{
+// 		text: "Поделиться",
+// 		onClick: () => {
+// 			console.log("Поделиться");
+// 		},
+// 	},
+// 	{
+// 		text: "Скрыть",
+// 		onClick: () => {
+// 			console.log("Скрыть");
+// 		},
+// 	},
+// 	{
+// 		text: "Сохранить",
+// 		onClick: () => {
+// 			console.log("Сохранить");
+// 		},
+// 	},
+// 	{
+// 		text: "Пожаловаться",
+// 		onClick: () => {
+// 			console.log("Пожаловаться");
+// 		},
+// 	},
+// 	{
+// 		text: "Закрыть",
+// 		onClick: () => {
+// 			console.log("Закрыть");
+// 		},
+// 	},
+// ].map(generateId);
 
 export function Menu() {
 	const ref = useRef<HTMLDivElement>(null);

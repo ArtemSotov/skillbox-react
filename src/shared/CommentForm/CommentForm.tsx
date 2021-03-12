@@ -12,12 +12,15 @@ export function CommentForm() {
 	const { value, onChange } = useContext(commentContext);
 
 	function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
+		// console.log("tatata:", event.target.value);
 		onChange(event.target.value);
 	}
 
 	function handleSubmit(event: FormEvent) {
+		console.log("run handleSubmit from CommentForm");
+
 		event.preventDefault();
-		console.log(value);
+		console.log("Новый комментарий: ", value);
 	}
 
 	return (

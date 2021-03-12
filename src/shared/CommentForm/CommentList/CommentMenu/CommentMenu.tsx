@@ -7,7 +7,7 @@ import { Break } from "../../../Break";
 
 export function CommentMenu() {
 	const handleAnswer = () => {
-		console.log("clicked");
+		console.log("Нажато 'Ответить'");
 	};
 
 	return (

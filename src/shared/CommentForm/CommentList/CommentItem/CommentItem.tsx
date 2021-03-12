@@ -1,4 +1,5 @@
 import React from "react";
+import { generateId } from "../../../../utils/react/generateRandomIndex";
 import { KarmaCounter } from "../../../CardsList/Card/Controls/KarmaCounter";
 import { AuthorInfo } from "../../../CardsList/Card/TextContent/AuthorInfo";
 import { CommentList, IComment } from "../CommentList";

@@ -28,26 +28,8 @@ export function DropdownPortal({
 		isDropdownOpen,
 	]);
 	const handleOpen = () => {
-		//	if (isOpen === undefined || isOpen === false) {
 		setIsDropdownOpen(!isDropdownOpen);
-		//	}
 	};
-
-	// const ref = useRef<HTMLDivElement>(null);
-
-	// useEffect(() => {
-	// 	function handleClick(event: MouseEvent) {
-	// 		// if (event.target instanceof Node && !ref.current?.contains(event.target)) {
-	// 		// 	// setIsDropdownOpen(false);
-
-	// 		// }
-	// 		console.log(isDropdownOpen);
-	// 	}
-	// 	document.addEventListener("click", handleClick);
-	// 	return () => {
-	// 		document.removeEventListener("click", handleClick);
-	// 	};
-	// }, []);
 
 	const node = document.querySelector("#modal_dropdownList");
 	if (!node) return null;
@@ -61,7 +43,6 @@ export function DropdownPortal({
 			top: coord.top + 20 + "px",
 			left: coord.left - 10 + "px",
 		});
-		//console.log("coord.left:", coord.left);
 	}, []);
 
 	return ReactDOM.createPortal(

@@ -30,6 +30,7 @@ export function usePostsData() {
 						preview: respList[i].data?.preview?.images[0]?.source?.url,
 					});
 				}
+				
 				setData(dataList);
 			})
 			.catch(console.log);

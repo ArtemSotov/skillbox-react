@@ -1,4 +1,5 @@
 import React from "react";
+import { generateId } from "../../../utils/react/generateRandomIndex";
 import { KarmaCounter } from "../../CardsList/Card/Controls/KarmaCounter";
 import { CommentItem } from "./CommentItem";
 import styles from "./commentlist.css";
@@ -14,21 +15,16 @@ interface ICommentListProps {
 }
 
 export function CommentList({ list }: ICommentListProps) {
-	console.log("list: ", list);
+	const listWithId = list.map(generateId);
 	return (
 		<>
-			{list.map((item) => (
-				<div className={styles.commentText1}>
+			{listWithId.map((item) => (
+				<div key={item.id}>
 					<CommentItem
 						text={item.text}
 						valueKarma={item.valueKarma}
 						child={item.child}
 					/>
-					{/* {!!child && (
-						<div className={styles.commentChild}>
-							<CommentList list={child} />
-						</div>
-					)} */}
 				</div>
 			))}
 		</>
