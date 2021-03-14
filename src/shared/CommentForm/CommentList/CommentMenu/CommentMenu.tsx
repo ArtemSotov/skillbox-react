@@ -1,21 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./commentmenu.css";
 import classNames from "classnames";
 import { Icon, EIcons } from "../../../Icon";
 import { EColor, Text } from "../../../Text";
 import { Break } from "../../../Break";
+import { commentContext } from "../../../context/commentContext";
 
-export function CommentMenu() {
+interface ICommentMenuProps {
+	author?: string;
+}
+
+export function CommentMenu({ author }: ICommentMenuProps) {
+	const { value, onChange } = useContext(commentContext);
+
 	const handleAnswer = () => {
-		console.log("Нажато 'Ответить'");
+		//console.log("author: ", author);
+		onChange("author: " + author);
 	};
 
 	return (
 		<ul className={styles.menuItemsList}>
-			<li
-				className={classNames(styles.menuItem, styles.hidden_mobile)}
-				onClick={handleAnswer}
-			>
+			<li className={classNames(styles.menuItem, styles.hidden_mobile)} onClick={handleAnswer}>
 				<Icon name={EIcons.comment} />
 				<Break inline={true} size={6} />
 				<Text mobileSize={12} size={14} color={EColor.grey99}>

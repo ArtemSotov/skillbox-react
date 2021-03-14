@@ -7,6 +7,7 @@ export interface IPostContextData {
 	url?: string;
 	permalink?: string;
 	preview?: string;
+	id?: string;
 }
 
 export const postsContext = React.createContext<IPostContextData[]>([]);

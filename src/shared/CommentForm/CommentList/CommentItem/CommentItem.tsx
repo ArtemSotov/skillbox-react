@@ -6,7 +6,7 @@ import { CommentList, IComment } from "../CommentList";
 import { CommentMenu } from "../CommentMenu";
 import styles from "./commentitem.css";
 
-export function CommentItem({ text, valueKarma, child }: IComment) {
+export function CommentItem({ author, text, valueKarma, child }: IComment) {
 	return (
 		<div className={styles.commentMain}>
 			<div className={styles.leftBorder}>
@@ -18,12 +18,12 @@ export function CommentItem({ text, valueKarma, child }: IComment) {
 			</div>
 			<div className={styles.commentGroup}>
 				<div className={styles.commentItem}>
-					<AuthorInfo author="Михаил Рогов" />
+					<AuthorInfo author={author} />
 					<br />
 					<div>
 						<span className={styles.commentText}>{text}</span>
 					</div>
-					<CommentMenu />
+					<CommentMenu author={author} />
 				</div>
 				{!!child && (
 					<div className={styles.commentChild}>

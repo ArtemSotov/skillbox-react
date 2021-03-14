@@ -5,9 +5,11 @@ import { CommentItem } from "./CommentItem";
 import styles from "./commentlist.css";
 
 export interface IComment {
+	author: string;
 	text: string;
 	valueKarma?: number;
 	child?: IComment[];
+	id?: string;
 }
 
 interface ICommentListProps {
@@ -15,16 +17,11 @@ interface ICommentListProps {
 }
 
 export function CommentList({ list }: ICommentListProps) {
-	const listWithId = list.map(generateId);
 	return (
 		<>
-			{listWithId.map((item) => (
+			{list.map((item) => (
 				<div key={item.id}>
-					<CommentItem
-						text={item.text}
-						valueKarma={item.valueKarma}
-						child={item.child}
-					/>
+					<CommentItem author={item.author} text={item.text} valueKarma={item.valueKarma} child={item.child} />
 				</div>
 			))}
 		</>

@@ -6,18 +6,11 @@ import styles from "./cardslist.css";
 
 export function CardsList() {
 	const cardsList = useContext(postsContext);
-	const cardsListWithId = cardsList.map(generateId);
 
 	return (
 		<ul className={styles.cardsList}>
-			{cardsListWithId.map((p) => (
-				<Card
-					preview={p.preview?.replace("&amp;", "&")}
-					title={p.title}
-					author={p.author}
-					url={p.url}
-					key={p.id}
-				/>
+			{cardsList.map((p) => (
+				<Card preview={p.preview?.replace("&amp;", "&")} title={p.title} author={p.author} url={p.url} key={p.id} />
 			))}
 		</ul>
 	);

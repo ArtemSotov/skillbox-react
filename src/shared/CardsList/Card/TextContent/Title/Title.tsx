@@ -15,8 +15,6 @@ export function Title({ title }: ITitleProps) {
 				href="#post-url"
 				className={styles.postLink}
 				onClick={() => {
-					console.log("open from Title");
-
 					setIsModelOpened(true);
 				}}
 			>
@@ -26,8 +24,6 @@ export function Title({ title }: ITitleProps) {
 			{isModalOpened && (
 				<Post
 					onClose={() => {
-						console.log("close from Title");
-
 						setIsModelOpened(false);
 					}}
 				/>

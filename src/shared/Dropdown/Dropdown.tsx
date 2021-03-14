@@ -12,18 +12,10 @@ interface IDropdownProps {
 	onClose?: () => void;
 }
 
-export function Dropdown({
-	button,
-	children,
-	isOpen,
-	onClose = noop,
-	onOpen = noop,
-}: IDropdownProps) {
+export function Dropdown({ button, children, isOpen, onClose = noop, onOpen = noop }: IDropdownProps) {
 	const [isDropdownOpen, setIsDropdownOpen] = React.useState(isOpen);
 	React.useEffect(() => setIsDropdownOpen(isOpen), [isOpen]);
-	React.useEffect(() => (isDropdownOpen ? onOpen() : onClose()), [
-		isDropdownOpen,
-	]);
+	React.useEffect(() => (isDropdownOpen ? onOpen() : onClose()), [isDropdownOpen]);
 	const handleOpen = () => {
 		//	if (isOpen === undefined || isOpen === false) {
 		setIsDropdownOpen(!isDropdownOpen);
@@ -34,17 +26,7 @@ export function Dropdown({
 
 	useEffect(() => {
 		function handleClick(event: MouseEvent) {
-			const tmp =
-				event.target instanceof Node && !ref.current?.contains(event.target);
-			console.log("tmp: ", tmp);
-
-			// if (
-			// 	event.target instanceof Node &&
-			// 	!ref.current?.contains(event.target)
-			// ) {
-			// 	//props.onClose?.();
-			// 	console.log("clicked");
-			// }
+			const tmp = event.target instanceof Node && !ref.current?.contains(event.target);
 		}
 		document.addEventListener("click", handleClick);
 		return () => {
@@ -52,17 +34,12 @@ export function Dropdown({
 		};
 	}, []);
 
-	// const node = document.querySelector("#modal_dropdownList");
-	// if (!node) return null;
 	return (
 		<div className={styles.container}>
 			<div onClick={handleOpen}>{button}</div>
 			{isDropdownOpen && (
 				<div className={styles.listContainer} ref={ref}>
-					<div
-						className={styles.list}
-						onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-					>
+					<div className={styles.list} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
 						{children}
 					</div>
 				</div>

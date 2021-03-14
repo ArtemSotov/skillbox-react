@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { tokenContext } from "../shared/context/tokenContext";
+import { generateId } from "../utils/react/generateRandomIndex";
 
 interface IPost {
 	author?: string;
@@ -30,8 +31,8 @@ export function usePostsData() {
 						preview: respList[i].data?.preview?.images[0]?.source?.url,
 					});
 				}
-				
-				setData(dataList);
+
+				setData(dataList.map(generateId));
 			})
 			.catch(console.log);
 	}, [token]);
