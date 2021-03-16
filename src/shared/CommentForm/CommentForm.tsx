@@ -1,9 +1,17 @@
-import React, { ChangeEvent, FormEvent, useContext } from "react";
+import React, { ChangeEvent, FormEvent, useContext, useEffect, useRef, useState } from "react";
 import { commentContext } from "../context/commentContext";
+import { userContext } from "../context/userContext";
 import styles from "./commentform.css";
 
 export function CommentForm() {
+	const { iconImg, name } = useContext(userContext);
 	const { value, onChange, setItemId } = useContext(commentContext);
+
+	const [placeHolder, setPlaceHolder] = useState("");
+
+	useEffect(() => {
+		setPlaceHolder(`${!!name ? name : "Аноним"}, оставьте ваш комментарий`);
+	}, [name]);
 
 	function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
 		onChange(event.target.value);
@@ -15,13 +23,15 @@ export function CommentForm() {
 		setItemId("");
 	}
 
+	const ref = useRef<HTMLTextAreaElement>(null);
+
+	useEffect(() => {
+		ref.current?.focus();
+	}, []);
+
 	return (
 		<form className={styles.form} onSubmit={handleSubmit}>
-			<textarea
-				className={styles.input}
-				value={value}
-				onChange={handleChange}
-			/>
+			<textarea className={styles.input} value={value} onChange={handleChange} placeholder={placeHolder} ref={ref} />
 			<button type="submit" className={styles.button}>
 				Комментировать
 			</button>

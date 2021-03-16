@@ -16,9 +16,10 @@ export function CommentMenu({ author, id }: ICommentMenuProps) {
 
 	const handleAnswer = () => {
 		//console.log("author: ", author);
-		onChange("author: " + author);
+		//onChange("author: " + author);
 		if (itemId !== id) {
 			setItemId(id);
+			onChange("");
 		} else {
 			setItemId("");
 		}
@@ -26,10 +27,7 @@ export function CommentMenu({ author, id }: ICommentMenuProps) {
 
 	return (
 		<ul className={styles.menuItemsList}>
-			<li
-				className={classNames(styles.menuItem, styles.hidden_mobile)}
-				onClick={handleAnswer}
-			>
+			<li className={classNames(styles.menuItem, styles.hidden_mobile)} onClick={handleAnswer}>
 				<Icon name={EIcons.comment} />
 				<Break inline={true} size={6} />
 				<Text mobileSize={12} size={14} color={EColor.grey99}>
