@@ -8,19 +8,28 @@ import { commentContext } from "../../../context/commentContext";
 
 interface ICommentMenuProps {
 	author?: string;
+	id: string;
 }
 
-export function CommentMenu({ author }: ICommentMenuProps) {
-	const { value, onChange } = useContext(commentContext);
+export function CommentMenu({ author, id }: ICommentMenuProps) {
+	const { value, onChange, itemId, setItemId } = useContext(commentContext);
 
 	const handleAnswer = () => {
 		//console.log("author: ", author);
 		onChange("author: " + author);
+		if (itemId !== id) {
+			setItemId(id);
+		} else {
+			setItemId("");
+		}
 	};
 
 	return (
 		<ul className={styles.menuItemsList}>
-			<li className={classNames(styles.menuItem, styles.hidden_mobile)} onClick={handleAnswer}>
+			<li
+				className={classNames(styles.menuItem, styles.hidden_mobile)}
+				onClick={handleAnswer}
+			>
 				<Icon name={EIcons.comment} />
 				<Break inline={true} size={6} />
 				<Text mobileSize={12} size={14} color={EColor.grey99}>

@@ -20,10 +20,18 @@ import { commentContext } from "./shared/context/commentContext";
 function AppComponent() {
 	const [token] = useToken();
 	const [commentValue, setCommentValue] = useState("");
+	const [commentId, setCommentId] = useState("");
 	const { Provider } = tokenContext;
 	const CommentProvider = commentContext.Provider;
 	return (
-		<CommentProvider value={{ value: commentValue, onChange: setCommentValue }}>
+		<CommentProvider
+			value={{
+				value: commentValue,
+				itemId: commentId,
+				onChange: setCommentValue,
+				setItemId: setCommentId,
+			}}
+		>
 			<tokenContext.Provider value={token}>
 				<UserContextProvider>
 					<PostsContextProvider>
