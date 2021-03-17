@@ -29,6 +29,7 @@ function AppComponent() {
 	const CommentProvider = commentContext.Provider;
 	return (
 		<Provider store={store}>
+			``
 			<CommentProvider
 				value={{
 					value: commentValue,

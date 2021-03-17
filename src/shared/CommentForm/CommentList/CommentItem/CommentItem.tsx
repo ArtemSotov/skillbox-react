@@ -3,6 +3,7 @@ import { CommentForm } from "../..";
 import { generateId } from "../../../../utils/react/generateRandomIndex";
 import { KarmaCounter } from "../../../CardsList/Card/Controls/KarmaCounter";
 import { AuthorInfo } from "../../../CardsList/Card/TextContent/AuthorInfo";
+import { CommentFormContainer } from "../../../CommentFormContainer";
 import { commentContext } from "../../../context/commentContext";
 import { CommentList, IComment } from "../CommentList";
 import { CommentMenu } from "../CommentMenu";
@@ -27,7 +28,7 @@ export function CommentItem({ author, text, valueKarma, child, id }: IComment) {
 						<span className={styles.commentText}>{text}</span>
 					</div>
 					<CommentMenu author={author} id={id} />
-					{id === itemId && <CommentForm />}
+					{id === itemId && <CommentFormContainer />}
 				</div>
 				{!!child && (
 					<div className={styles.commentChild}>

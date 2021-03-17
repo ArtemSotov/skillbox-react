@@ -6,40 +6,23 @@ import React, {
 	useRef,
 	useState,
 } from "react";
-import { commentContext } from "../context/commentContext";
 import { userContext } from "../context/userContext";
 import styles from "./commentform.css";
-import { useStore, useSelector, useDispatch } from "react-redux";
-import { RootState, updateComment } from "../../store";
 
-export function CommentForm() {
-	// долгий путь
-	// const store = useStore<RootState>();
-	// const value = store.getState().commentText;
+type ICommentFormProps = {
+	value: string;
+	onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+	onSubmit: (event: FormEvent) => void;
+};
 
-	// короткий путь, следующая строка аналогичен предыдущим двум строчкам
-	const value = useSelector<RootState, string>((state) => state.commentText);
-	const dispatch = useDispatch();
-
+export function CommentForm({ value, onChange, onSubmit }: ICommentFormProps) {
 	const { name } = useContext(userContext);
-	const { setItemId } = useContext(commentContext);
 
 	const [placeHolder, setPlaceHolder] = useState("");
 
 	useEffect(() => {
 		setPlaceHolder(`${!!name ? name : "Аноним"}, оставьте ваш комментарий`);
 	}, [name]);
-
-	function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
-		//onChange(event.target.value);
-		dispatch(updateComment(event.target.value));
-	}
-
-	function handleSubmit(event: FormEvent) {
-		event.preventDefault();
-		console.log("Новый комментарий: ", value);
-		setItemId("");
-	}
 
 	const ref = useRef<HTMLTextAreaElement>(null);
 
@@ -48,11 +31,11 @@ export function CommentForm() {
 	}, []);
 
 	return (
-		<form className={styles.form} onSubmit={handleSubmit}>
+		<form className={styles.form} onSubmit={onSubmit}>
 			<textarea
 				className={styles.input}
 				value={value}
-				onChange={handleChange}
+				onChange={onChange}
 				placeholder={placeHolder}
 				ref={ref}
 			/>
