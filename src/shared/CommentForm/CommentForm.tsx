@@ -1,11 +1,28 @@
-import React, { ChangeEvent, FormEvent, useContext, useEffect, useRef, useState } from "react";
+import React, {
+	ChangeEvent,
+	FormEvent,
+	useContext,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 import { commentContext } from "../context/commentContext";
 import { userContext } from "../context/userContext";
 import styles from "./commentform.css";
+import { useStore, useSelector, useDispatch } from "react-redux";
+import { RootState, updateComment } from "../../store";
 
 export function CommentForm() {
-	const { iconImg, name } = useContext(userContext);
-	const { value, onChange, setItemId } = useContext(commentContext);
+	// долгий путь
+	// const store = useStore<RootState>();
+	// const value = store.getState().commentText;
+
+	// короткий путь, следующая строка аналогичен предыдущим двум строчкам
+	const value = useSelector<RootState, string>((state) => state.commentText);
+	const dispatch = useDispatch();
+
+	const { name } = useContext(userContext);
+	const { setItemId } = useContext(commentContext);
 
 	const [placeHolder, setPlaceHolder] = useState("");
 
@@ -14,7 +31,8 @@ export function CommentForm() {
 	}, [name]);
 
 	function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
-		onChange(event.target.value);
+		//onChange(event.target.value);
+		dispatch(updateComment(event.target.value));
 	}
 
 	function handleSubmit(event: FormEvent) {
@@ -31,7 +49,13 @@ export function CommentForm() {
 
 	return (
 		<form className={styles.form} onSubmit={handleSubmit}>
-			<textarea className={styles.input} value={value} onChange={handleChange} placeholder={placeHolder} ref={ref} />
+			<textarea
+				className={styles.input}
+				value={value}
+				onChange={handleChange}
+				placeholder={placeHolder}
+				ref={ref}
+			/>
 			<button type="submit" className={styles.button}>
 				Комментировать
 			</button>

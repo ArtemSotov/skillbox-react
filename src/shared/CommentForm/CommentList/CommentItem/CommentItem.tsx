@@ -26,7 +26,6 @@ export function CommentItem({ author, text, valueKarma, child, id }: IComment) {
 					<div>
 						<span className={styles.commentText}>{text}</span>
 					</div>
-					<span>{id}</span>
 					<CommentMenu author={author} id={id} />
 					{id === itemId && <CommentForm />}
 				</div>

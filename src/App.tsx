@@ -14,37 +14,43 @@ import { tokenContext } from "./shared/context/tokenContext";
 import { UserContextProvider } from "./shared/context/userContext";
 import { PostsContextProvider } from "./shared/context/postsContext";
 import { commentContext } from "./shared/context/commentContext";
-// import { usePostsData } from "./hooks/usePostsData";
-// import axios from "axios";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { rootReducer } from "./store";
+
+const store = createStore(rootReducer, composeWithDevTools());
 
 function AppComponent() {
 	const [token] = useToken();
 	const [commentValue, setCommentValue] = useState("");
 	const [commentId, setCommentId] = useState("");
-	const { Provider } = tokenContext;
+	const TokenProvider = tokenContext.Provider;
 	const CommentProvider = commentContext.Provider;
 	return (
-		<CommentProvider
-			value={{
-				value: commentValue,
-				itemId: commentId,
-				onChange: setCommentValue,
-				setItemId: setCommentId,
-			}}
-		>
-			<tokenContext.Provider value={token}>
-				<UserContextProvider>
-					<PostsContextProvider>
-						<Layout>
-							<Header />
-							<Content>
-								<CardsList />
-							</Content>
-						</Layout>
-					</PostsContextProvider>
-				</UserContextProvider>
-			</tokenContext.Provider>
-		</CommentProvider>
+		<Provider store={store}>
+			<CommentProvider
+				value={{
+					value: commentValue,
+					itemId: commentId,
+					onChange: setCommentValue,
+					setItemId: setCommentId,
+				}}
+			>
+				<TokenProvider value={token}>
+					<UserContextProvider>
+						<PostsContextProvider>
+							<Layout>
+								<Header />
+								<Content>
+									<CardsList />
+								</Content>
+							</Layout>
+						</PostsContextProvider>
+					</UserContextProvider>
+				</TokenProvider>
+			</CommentProvider>
+		</Provider>
 	);
 }
 
