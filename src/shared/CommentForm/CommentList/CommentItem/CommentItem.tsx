@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
-import { CommentForm } from "../..";
-import { generateId } from "../../../../utils/react/generateRandomIndex";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../store";
 import { KarmaCounter } from "../../../CardsList/Card/Controls/KarmaCounter";
 import { AuthorInfo } from "../../../CardsList/Card/TextContent/AuthorInfo";
 import { CommentFormContainer } from "../../../CommentFormContainer";
-import { commentContext } from "../../../context/commentContext";
 import { CommentList, IComment } from "../CommentList";
 import { CommentMenu } from "../CommentMenu";
 import styles from "./commentitem.css";
 
 export function CommentItem({ author, text, valueKarma, child, id }: IComment) {
-	const { itemId } = useContext(commentContext);
+	const itemId = useSelector<RootState, string>((state) => state.commentItemId);
+
 	return (
 		<div className={styles.commentMain}>
 			<div className={styles.leftBorder}>

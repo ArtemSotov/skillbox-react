@@ -6,11 +6,9 @@ import React, {
 	useRef,
 	useState,
 } from "react";
-import { commentContext } from "../context/commentContext";
 import { userContext } from "../context/userContext";
-import styles from "./commentform.css";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState, updateComment } from "../../store";
+import { RootState, updateComment, updateCommentItemId } from "../../store";
 import { CommentForm } from "../CommentForm";
 
 export function CommentFormContainer() {
@@ -23,7 +21,6 @@ export function CommentFormContainer() {
 	const dispatch = useDispatch();
 
 	const { name } = useContext(userContext);
-	const { setItemId } = useContext(commentContext);
 
 	const [placeHolder, setPlaceHolder] = useState("");
 
@@ -39,7 +36,7 @@ export function CommentFormContainer() {
 	function handleSubmit(event: FormEvent) {
 		event.preventDefault();
 		console.log("Новый комментарий: ", value);
-		setItemId("");
+		dispatch(updateCommentItemId(""));
 	}
 
 	const ref = useRef<HTMLTextAreaElement>(null);

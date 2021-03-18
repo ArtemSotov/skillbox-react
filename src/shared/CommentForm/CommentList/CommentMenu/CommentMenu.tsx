@@ -4,7 +4,12 @@ import classNames from "classnames";
 import { Icon, EIcons } from "../../../Icon";
 import { EColor, Text } from "../../../Text";
 import { Break } from "../../../Break";
-import { commentContext } from "../../../context/commentContext";
+import { useDispatch, useSelector } from "react-redux";
+import {
+	RootState,
+	updateComment,
+	updateCommentItemId,
+} from "../../../../store";
 
 interface ICommentMenuProps {
 	author?: string;
@@ -12,14 +17,15 @@ interface ICommentMenuProps {
 }
 
 export function CommentMenu({ author, id }: ICommentMenuProps) {
-	const { onChange, itemId, setItemId } = useContext(commentContext);
+	const itemId = useSelector<RootState, string>((state) => state.commentItemId);
+	const dispatch = useDispatch();
 
 	const handleAnswer = () => {
 		if (itemId !== id) {
-			setItemId(id);
-			onChange("");
+			dispatch(updateCommentItemId(id));
+			dispatch(updateComment(""));
 		} else {
-			setItemId("");
+			dispatch(updateCommentItemId(""));
 		}
 	};
 
