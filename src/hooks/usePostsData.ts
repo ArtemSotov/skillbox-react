@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
-import { tokenContext } from "../shared/context/tokenContext";
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
 import { generateId } from "../utils/react/generateRandomIndex";
 
 interface IPost {
@@ -13,7 +14,7 @@ interface IPost {
 
 export function usePostsData() {
 	const [data, setData] = useState<IPost[]>([]);
-	const token = useContext(tokenContext);
+	const token = useSelector<RootState, string>((state)=>state.token);
 	useEffect(() => {
 		axios
 			.get("https://oauth.reddit.com/best.json?limit=1", {
