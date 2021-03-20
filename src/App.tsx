@@ -2,7 +2,7 @@
 // https://www.figma.com/file/STABzVueKL3brf4aOgkvW2/Rd-(Mirror)?node-id=94%3A3575
 // Документация к Reddit Api: reddit.com/dev/api/oauth
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./main.global.css";
 import { hot } from "react-hot-loader/root";
 import { Layout } from "./shared/Layout";
@@ -12,9 +12,9 @@ import { CardsList } from "./shared/CardsList";
 import { UserContextProvider } from "./shared/context/userContext";
 import { PostsContextProvider } from "./shared/context/postsContext";
 import { createStore } from "redux";
-import { Provider, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { rootReducer, setToken } from "./store";
+import { rootReducer } from "./store";
 
 const store = createStore(rootReducer, composeWithDevTools());
 

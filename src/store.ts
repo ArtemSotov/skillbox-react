@@ -7,22 +7,6 @@ export type RootState = {
 	token: string;
 };
 
-
-// export function useToken() {
-// 	const [token, setToken] = useState("");
-
-// 	useEffect(() => {
-// 		if (window.__token__) {
-// 			setToken(window.__token__);
-// 		}
-// 	}, []);
-
-// 	return [token];
-// }
-
-
-
-
 const initialState: RootState = { commentText: "", commentItemId: "", token: '' };
 const UPDATE_COMMENT = "UPDATE_COMMENT";
 const UPDATE_COMMENT_ITEM_ID = 'UPDATE_COMMENT_ITEM_ID';
