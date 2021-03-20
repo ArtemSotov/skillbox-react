@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Reducer, ActionCreator, AnyAction } from "redux";
 
 export type RootState = {
@@ -7,20 +8,22 @@ export type RootState = {
 };
 
 
-export function useToken() {
-	const [token, setToken] = useState("");
+// export function useToken() {
+// 	const [token, setToken] = useState("");
 
-	useEffect(() => {
-		if (window.__token__) {
-			setToken(window.__token__);
-		}
-	}, []);
+// 	useEffect(() => {
+// 		if (window.__token__) {
+// 			setToken(window.__token__);
+// 		}
+// 	}, []);
 
-	return [token];
-}
+// 	return [token];
+// }
 
 
-const initialState: RootState = { commentText: "", commentItemId:"", token: '' };
+
+
+const initialState: RootState = { commentText: "", commentItemId: "", token: '' };
 const UPDATE_COMMENT = "UPDATE_COMMENT";
 const UPDATE_COMMENT_ITEM_ID = 'UPDATE_COMMENT_ITEM_ID';
 const SET_TOKEN = 'SET_TOKEN';
@@ -35,7 +38,7 @@ export const updateCommentItemId: ActionCreator<AnyAction> = (text) => ({
 	text
 });
 
-export const setToken:ActionCreator<AnyAction> = (text)=>({
+export const setToken: ActionCreator<AnyAction> = (text) => ({
 	type: SET_TOKEN,
 	text
 });
@@ -45,9 +48,10 @@ export const rootReducer: Reducer<RootState> = (state = initialState, action) =>
 		case UPDATE_COMMENT:
 			return { ...state, commentText: action.text };
 		case UPDATE_COMMENT_ITEM_ID:
-			return {...state, commentItemId: action.text};
+			return { ...state, commentItemId: action.text };
 		case SET_TOKEN:
-			return{...state, token: action.text};
+
+			return { ...state, token: action.text };
 		default:
 			return state;
 	}

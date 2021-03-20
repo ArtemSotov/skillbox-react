@@ -2,7 +2,7 @@
 // https://www.figma.com/file/STABzVueKL3brf4aOgkvW2/Rd-(Mirror)?node-id=94%3A3575
 // Документация к Reddit Api: reddit.com/dev/api/oauth
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./main.global.css";
 import { hot } from "react-hot-loader/root";
 import { Layout } from "./shared/Layout";
