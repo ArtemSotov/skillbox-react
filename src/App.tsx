@@ -2,7 +2,7 @@
 // https://www.figma.com/file/STABzVueKL3brf4aOgkvW2/Rd-(Mirror)?node-id=94%3A3575
 // Документация к Reddit Api: reddit.com/dev/api/oauth
 
-import React from "react";
+import React, { useEffect } from "react";
 import "./main.global.css";
 import { hot } from "react-hot-loader/root";
 import { Layout } from "./shared/Layout";
@@ -11,14 +11,27 @@ import { Content } from "./shared/Content";
 import { CardsList } from "./shared/CardsList";
 import { UserContextProvider } from "./shared/context/userContext";
 import { PostsContextProvider } from "./shared/context/postsContext";
-import { createStore } from "redux";
+import { Action, applyMiddleware, createStore, Middleware } from "redux";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { rootReducer } from "./store";
+import { rootReducer, RootState } from "./store";
+import thunk, { ThunkAction } from "redux-thunk";
 
-const store = createStore(rootReducer, composeWithDevTools());
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+
+const timeout = (ms: number): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch, _getState) => {
+	dispatch({ type: "START" });
+	setTimeout(() => {
+		dispatch({ type: "FINISH" });
+	}, ms);
+};
 
 function AppComponent() {
+	useEffect(() => {
+		//@ts-ignore
+		store.dispatch(timeout(3000));
+	}, []);
+
 	return (
 		<Provider store={store}>
 			<UserContextProvider>
