@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../store";
+import { RootState } from "../store/reducer";
 import { generateId } from "../utils/react/generateRandomIndex";
 
 interface IPost {

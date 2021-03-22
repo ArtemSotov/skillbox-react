@@ -9,7 +9,7 @@ import {
 	RootState,
 	updateComment,
 	updateCommentItemId,
-} from "../../../../store";
+} from "../../../../store/reducer";
 
 interface ICommentMenuProps {
 	author?: string;

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../../store";
+import { RootState } from "../../../../store/reducer";
 import { KarmaCounter } from "../../../CardsList/Card/Controls/KarmaCounter";
 import { AuthorInfo } from "../../../CardsList/Card/TextContent/AuthorInfo";
 import { CommentFormContainer } from "../../../CommentFormContainer";

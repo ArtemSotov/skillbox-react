@@ -11,36 +11,22 @@ import { Content } from "./shared/Content";
 import { CardsList } from "./shared/CardsList";
 import { UserContextProvider } from "./shared/context/userContext";
 import { PostsContextProvider } from "./shared/context/postsContext";
-import { Action, applyMiddleware, createStore, Middleware } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { rootReducer, RootState, setToken } from "./store";
-import thunk, { ThunkAction } from "redux-thunk";
+import { rootReducer, setToken } from "./store/reducer";
+import thunk from "redux-thunk";
 
 const store = createStore(
 	rootReducer,
 	composeWithDevTools(applyMiddleware(thunk))
 );
 
-const timeout = (
-	ms: number
-): ThunkAction<void, RootState, unknown, Action<string>> => (
-	dispatch,
-	_getState
-) => {
-	dispatch({ type: "START" });
-	setTimeout(() => {
-		dispatch({ type: "FINISH" });
-	}, ms);
-};
-
 function AppComponent() {
 	useEffect(() => {
 		if (window.__token__) {
 			store.dispatch(setToken(window.__token__));
 		}
-		//@ts-ignore
-		store.dispatch(timeout(3000));
 	}, []);
 
 	return (

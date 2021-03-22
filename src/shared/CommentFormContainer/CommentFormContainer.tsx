@@ -8,7 +8,11 @@ import React, {
 } from "react";
 import { userContext } from "../context/userContext";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState, updateComment, updateCommentItemId } from "../../store";
+import {
+	RootState,
+	updateComment,
+	updateCommentItemId,
+} from "../../store/reducer";
 import { CommentForm } from "../CommentForm";
 
 export function CommentFormContainer() {
