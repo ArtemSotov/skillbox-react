@@ -9,7 +9,6 @@ import { Layout } from "./shared/Layout";
 import { Header } from "./shared/Header";
 import { Content } from "./shared/Content";
 import { CardsList } from "./shared/CardsList";
-import { UserContextProvider } from "./shared/context/userContext";
 import { PostsContextProvider } from "./shared/context/postsContext";
 import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
@@ -29,18 +28,27 @@ function AppComponent() {
 		}
 	}, []);
 
+	/*
+	useEffect(() => {
+		const token = localStorage.getItem("token") || window.__token__;
+		console.log(token);
+		store.dispatch(setToken(token));
+		if (token) {
+			localStorage.setItem("token", token);
+		}
+	}, []);
+	*/
+
 	return (
 		<Provider store={store}>
-			<UserContextProvider>
-				<PostsContextProvider>
-					<Layout>
-						<Header />
-						<Content>
-							<CardsList />
-						</Content>
-					</Layout>
-				</PostsContextProvider>
-			</UserContextProvider>
+			<PostsContextProvider>
+				<Layout>
+					<Header />
+					<Content>
+						<CardsList />
+					</Content>
+				</Layout>
+			</PostsContextProvider>
 		</Provider>
 	);
 }

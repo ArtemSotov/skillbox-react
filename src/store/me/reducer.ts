@@ -1,9 +1,10 @@
 import { Reducer } from "react";
-import { MeRequestAction, MeRequestSuccessAction, MeRequestErrorAction, ME_REQUEST_ERROR, ME_REQUEST } from "./actions";
+import { MeRequestAction, MeRequestSuccessAction, MeRequestErrorAction, ME_REQUEST_ERROR, ME_REQUEST, ME_REQUEST_SUCCESS, IUserData } from "./actions";
 
 export type MeState={
 	loading: boolean;
-	error: string
+	error: string;
+	data: IUserData;
 }
 type MeActions = MeRequestAction | MeRequestSuccessAction |MeRequestErrorAction;
 export const meReducer: Reducer<MeState, MeActions> = (state, action) => {
@@ -16,7 +17,14 @@ export const meReducer: Reducer<MeState, MeActions> = (state, action) => {
 		case ME_REQUEST_ERROR:
 			return {
 				...state, 
-				error: action.error
+				error: action.error,
+				loading: false
+			};
+		case ME_REQUEST_SUCCESS:
+			return {
+				...state, 
+				data: action.data,
+				loading: false
 			};
 		default:
 			return state;

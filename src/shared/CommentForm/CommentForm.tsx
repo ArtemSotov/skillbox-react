@@ -1,12 +1,11 @@
 import React, {
 	ChangeEvent,
 	FormEvent,
-	useContext,
 	useEffect,
 	useRef,
 	useState,
 } from "react";
-import { userContext } from "../context/userContext";
+import { useUserData } from "../../hooks/useUserData";
 import styles from "./commentform.css";
 
 type ICommentFormProps = {
@@ -16,12 +15,14 @@ type ICommentFormProps = {
 };
 
 export function CommentForm({ value, onChange, onSubmit }: ICommentFormProps) {
-	const { name } = useContext(userContext);
+	const { data } = useUserData();
 
 	const [placeHolder, setPlaceHolder] = useState("");
 
 	useEffect(() => {
-		setPlaceHolder(`${!!name ? name : "Аноним"}, оставьте ваш комментарий`);
+		setPlaceHolder(
+			`${!!data.name ? data.name : "Аноним"}, оставьте ваш комментарий`
+		);
 	}, [name]);
 
 	const ref = useRef<HTMLTextAreaElement>(null);

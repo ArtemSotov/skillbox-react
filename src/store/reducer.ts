@@ -48,7 +48,8 @@ const initialState: RootState = {
 	token: '',  
 	me: {
 		loading: false,
-		error: ''
+		error: '',
+		data: {}
 	}
 };
 

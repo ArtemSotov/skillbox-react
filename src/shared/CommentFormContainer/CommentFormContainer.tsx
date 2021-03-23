@@ -1,12 +1,10 @@
 import React, {
 	ChangeEvent,
 	FormEvent,
-	useContext,
 	useEffect,
 	useRef,
 	useState,
 } from "react";
-import { userContext } from "../context/userContext";
 import { useSelector, useDispatch } from "react-redux";
 import {
 	RootState,
@@ -14,6 +12,7 @@ import {
 	updateCommentItemId,
 } from "../../store/reducer";
 import { CommentForm } from "../CommentForm";
+import { useUserData } from "../../hooks/useUserData";
 
 export function CommentFormContainer() {
 	// долгий путь
@@ -24,13 +23,15 @@ export function CommentFormContainer() {
 	const value = useSelector<RootState, string>((state) => state.commentText);
 	const dispatch = useDispatch();
 
-	const { name } = useContext(userContext);
+	const { data } = useUserData();
 
 	const [placeHolder, setPlaceHolder] = useState("");
 
 	useEffect(() => {
-		setPlaceHolder(`${!!name ? name : "Аноним"}, оставьте ваш комментарий`);
-	}, [name]);
+		setPlaceHolder(
+			`${!!data.name ? data.name : "Аноним"}, оставьте ваш комментарий`
+		);
+	}, [data.name]);
 
 	function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
 		//onChange(event.target.value);
