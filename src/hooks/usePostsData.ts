@@ -14,7 +14,7 @@ interface IPost {
 
 export function usePostsData() {
 	const [data, setData] = useState<IPost[]>([]);
-	const token = useSelector<RootState, string>((state)=>state.token);
+	const token = useSelector<RootState, string>((state)=>state.token.value);
 	useEffect(() => {
 		axios
 			.get("https://oauth.reddit.com/best.json?limit=1", {
