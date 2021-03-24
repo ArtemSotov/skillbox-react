@@ -1,7 +1,7 @@
 import { Reducer, ActionCreator, AnyAction } from "redux";
 import { MeRequestAction, MeRequestErrorAction, MeRequestSuccessAction, ME_REQUEST, ME_REQUEST_ERROR, ME_REQUEST_SUCCESS } from "./me/actions";
 import { meReducer, MeState } from "./me/reducer";
-import { SetTokenAction, SET_TOKEN } from "./token/actions";
+import { SetTokenAction, SET_TOKEN, TokenAction } from "./token/actions";
 import { tokenReducer, TokenState } from "./token/reducer";
 
 export type RootState = {
@@ -12,7 +12,7 @@ export type RootState = {
 };
 
 const UPDATE_COMMENT = "UPDATE_COMMENT";
-type UpdateCommentAction={
+type UpdateCommentAction = {
 	type: typeof UPDATE_COMMENT;
 	text: string;
 }
@@ -23,7 +23,7 @@ export const updateComment: ActionCreator<UpdateCommentAction> = (text) => ({
 
 
 const UPDATE_COMMENT_ITEM_ID = 'UPDATE_COMMENT_ITEM_ID';
-type UpdateCommentIdAction={
+type UpdateCommentIdAction = {
 	type: typeof UPDATE_COMMENT_ITEM_ID;
 	text: string;
 }
@@ -33,12 +33,12 @@ export const updateCommentItemId: ActionCreator<UpdateCommentIdAction> = (text) 
 	text
 });
 
-const initialState: RootState = { 
-	commentText: "", 
-	commentItemId: "", 
+const initialState: RootState = {
+	commentText: "",
+	commentItemId: "",
 	token: {
 		value: ''
-	},  
+	},
 	me: {
 		loading: false,
 		error: '',
@@ -46,7 +46,7 @@ const initialState: RootState = {
 	}
 };
 
-type MyAction = UpdateCommentAction | UpdateCommentIdAction | SetTokenAction | MeRequestAction | MeRequestSuccessAction |MeRequestErrorAction;
+type MyAction = UpdateCommentAction | UpdateCommentIdAction | TokenAction | SetTokenAction | MeRequestAction | MeRequestSuccessAction | MeRequestErrorAction;
 export const rootReducer: Reducer<RootState, MyAction> = (state = initialState, action) => {
 	switch (action.type) {
 		case UPDATE_COMMENT:
@@ -54,11 +54,11 @@ export const rootReducer: Reducer<RootState, MyAction> = (state = initialState, 
 		case UPDATE_COMMENT_ITEM_ID:
 			return { ...state, commentItemId: action.text };
 		case SET_TOKEN:
-			return {...state, token: tokenReducer(state.token, action)}
+			return { ...state, token: tokenReducer(state.token, action) }
 		case ME_REQUEST:
 		case ME_REQUEST_SUCCESS:
 		case ME_REQUEST_ERROR:
-			return {...state, me: meReducer(state.me, action)};
+			return { ...state, me: meReducer(state.me, action) };
 		default:
 			return state;
 	}

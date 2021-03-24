@@ -5,10 +5,10 @@ import { RootState } from "../reducer";
 
 
 export const CHECK_TOKEN = 'CHECK_TOKEN';
-export type CheckTokenAction = {
+export type TokenAction = {
 	type: typeof CHECK_TOKEN;
 }
-export const checkToken: ActionCreator<CheckTokenAction> = ()=>({
+export const checkToken: ActionCreator<TokenAction> = () => ({
 	type: CHECK_TOKEN
 });
 
@@ -23,11 +23,10 @@ export const setToken: ActionCreator<SetTokenAction> = (token) => ({
 	token
 });
 
-export const setTokenThunk = (): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch) => {
-	useEffect(() => {
-	dispatch(checkToken());
-		if (window.__token__) {
-			dispatch(setToken(window.__token__));
-		}
-	}, []);
+export const tokenThunk = (): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch) => {
+	//console.log('aaa');
+	//dispatch(checkToken());
+	// if (window.__token__) {
+	// 	dispatch(setToken(window.__token__));
+	// }
 }
