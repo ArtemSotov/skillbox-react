@@ -1,32 +1,31 @@
-import { useEffect } from "react";
-import { Action, ActionCreator } from "redux";
-import { ThunkAction } from "redux-thunk";
-import { RootState } from "../reducer";
+import { ActionCreator } from "redux";
+import { TypeThunk } from "../reducer";
 
-
-export const CHECK_TOKEN = 'CHECK_TOKEN';
-export type TokenAction = {
-	type: typeof CHECK_TOKEN;
+export const TOKEN_UNDEFINED = 'TOKEN_UNDEFINED';
+export type TokenUndefinedAction = {
+	type: typeof TOKEN_UNDEFINED;
 }
-export const checkToken: ActionCreator<TokenAction> = () => ({
-	type: CHECK_TOKEN
+export const tokenUndefined: ActionCreator<TokenUndefinedAction> = ()=>({
+	type: TOKEN_UNDEFINED,
 });
 
-export const SET_TOKEN = 'SET_TOKEN';
-export type SetTokenAction = {
-	type: typeof SET_TOKEN;
+
+export const SAVE_TOKEN = 'SAVE_TOKEN';
+export type SaveTokenAction = {
+	type: typeof SAVE_TOKEN;
 	token: string;
 }
 
-export const setToken: ActionCreator<SetTokenAction> = (token) => ({
-	type: SET_TOKEN,
+export const saveToken: ActionCreator<SaveTokenAction> = (token) => ({
+	type: SAVE_TOKEN,
 	token
 });
 
-export const tokenThunk = (): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch) => {
-	//console.log('aaa');
-	//dispatch(checkToken());
-	// if (window.__token__) {
-	// 	dispatch(setToken(window.__token__));
-	// }
+export const thunkSaveToken = (): TypeThunk => (dispatch) => {
+	if (window.__token__!=='undefined') {
+		console.log('dispatch(saveToken(window.__token__));');
+		dispatch(saveToken(window.__token__));
+	} else{
+		dispatch(tokenUndefined());
+	}
 }

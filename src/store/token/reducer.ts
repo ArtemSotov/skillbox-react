@@ -1,13 +1,13 @@
 import { Reducer } from "react";
-import { SetTokenAction, SET_TOKEN } from "./actions";
+import { SaveTokenAction, SAVE_TOKEN } from "./actions";
 
 export type TokenState={
 	value: string;
 }
 
-export const tokenReducer: Reducer<TokenState, SetTokenAction> = (state, action) => {
+export const tokenReducer: Reducer<TokenState, SaveTokenAction> = (state, action) => {
 	switch (action.type){
-		case SET_TOKEN:
+		case SAVE_TOKEN:
 			return {
 				...state,
 				value: action.token

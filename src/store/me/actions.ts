@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Action, ActionCreator } from "redux";
 import { ThunkAction } from "redux-thunk";
-import { RootState } from "../reducer";
+import { RootState, TypeThunk } from "../reducer";
 
 export const ME_REQUEST = 'ME_REQUEST';
 export type MeRequestAction = {
@@ -39,11 +39,11 @@ export const meRequestError: ActionCreator<MeRequestErrorAction> = (error: strin
 	error
 });
 
-export const meRequestAsync = (): ThunkAction<void, RootState, unknown, Action<string>> => (dispatch, getState) => {
+export const meRequestAsync = (): TypeThunk => (dispatch, getState) => {
 	dispatch(meRequest());
 	axios
 		.get("https://oauth.reddit.com/api/v1/me", {
-			headers: { Authorization: `bearer ${getState().token}` },
+			headers: { Authorization: `bearer ${getState().token.value}` },
 		})
 		.then((resp) => {
 			const userData = resp.data;
