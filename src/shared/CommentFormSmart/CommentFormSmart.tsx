@@ -4,11 +4,19 @@ import styles from "./commentformsmart.css";
 
 export function CommentFormSmart() {
 	const [value, setValue] = useState("");
-	// const [valueTouched, setValueTouched] = useState(false);
-	// const [valueError, setValueError] = useState("");
+	const [touched, setTouched] = useState(false);
+	const [valueError, setValueError] = useState("");
 
 	function handleSubmit(event: FormEvent) {
 		event.preventDefault();
+		setTouched(true);
+
+		setValueError(validateValue());
+
+		const isFormValid = !validateValue();
+
+		if (!isFormValid) return;
+		alert("Форма отправлена");
 	}
 
 	function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
@@ -20,14 +28,17 @@ export function CommentFormSmart() {
 		return "";
 	}
 
-	const isFormValid = !validateValue();
-
 	return (
 		<form className={styles.form} onSubmit={handleSubmit}>
-			<textarea className={styles.input} value={value} onChange={handleChange} aria-invalid={validateValue() ? "true" : undefined} />
+			<textarea
+				className={styles.input}
+				value={value}
+				onChange={handleChange}
+				aria-invalid={valueError ? "true" : undefined}
+			/>
 
-			{validateValue() && <div>{validateValue()}</div>}
-			<button type="submit" className={styles.button} disabled={!isFormValid}>
+			{touched && valueError && <div>{valueError}</div>}
+			<button type="submit" className={styles.button}>
 				Комментировать
 			</button>
 		</form>

@@ -1,4 +1,5 @@
 .form {
+	display: flex;
 	flex-direction: column;
 }
 
@@ -16,7 +17,11 @@
 	line-height: 19px;
 	color: #cc6633;
 
-	width: 100%;
+	resize: none;
+}
+
+.input[aria-invalid] {
+	border-color: red;
 }
 
 .button {
