@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { generateId } from "../../utils/react/generateRandomIndex";
-import { CommentList, IComment } from "../CommentForm/CommentList";
-import { CommentFormSmart } from "../CommentFormSmart";
+import { IComment } from "../CommentForm/CommentList";
+import { CommentFormFormik } from "../CommentFormFormik";
 import styles from "./post.css";
 
 interface IPost {
@@ -71,7 +71,7 @@ export function Post(props: IPost) {
 				<p>Есть над чем задуматься</p>
 				<p>Есть над чем задуматься</p>
 			</div>
-			<CommentFormSmart />
+			<CommentFormFormik />
 			<hr />
 			{/* <CommentList list={commentList} /> */}
 		</div>,
