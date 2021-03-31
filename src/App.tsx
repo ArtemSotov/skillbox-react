@@ -15,8 +15,13 @@ import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { rootReducer } from "./store/reducer";
 import thunk from "redux-thunk";
+import { CommentFormSmart } from "./shared/CommentFormSmart";
+import { CommentFormFormik } from "./shared/CommentFormFormik";
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(
+	rootReducer,
+	composeWithDevTools(applyMiddleware(thunk))
+);
 
 function AppComponent() {
 	// const dispatch = useDispatch();

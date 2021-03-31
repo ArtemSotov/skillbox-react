@@ -1,57 +1,53 @@
-import { useFormik } from "formik";
+import {
+	ErrorMessage,
+	Field,
+	Form,
+	Formik,
+	FormikErrors,
+	useFormik,
+} from "formik";
 import React, { useState } from "react";
+import { values } from "../../../webpack.config";
 import styles from "./commentformformik.css";
 
 export function CommentFormFormik() {
-	// const [value, setValue] = useState("");
-	// const [touched, setTouched] = useState(false);
-	// const [valueError, setValueError] = useState("");
+	type TValues = {
+		comment: string;
+	};
+	type TErrors = Partial<TValues>;
 
-	// function handleSubmit(event: FormEvent) {
-	// 	event.preventDefault();
-	// 	setTouched(true);
+	const initialValues: TValues = {
+		comment: "",
+	};
 
-	// 	setValueError(validateValue());
+	const onSubmit = (values: TValues) => {
+		console.log("Введен комментарий ", values.comment);
+		alert("Форма отправлена");
+	};
 
-	// 	const isFormValid = !validateValue();
-
-	// 	if (!isFormValid) return;
-	// 	alert("Форма отправлена");
-	// }
-
-	// function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
-	// 	setValue(event?.target.value);
-	// }
-
-	// function validateValue() {
-	// 	//if (value.length <= 3) return "Ошибка. Введите больше 3х символов";
-	// 	return "";
-	// }
-
-	const formik = useFormik({
-		initialValues: {
-			comment: "",
-		},
-		onSubmit: () => {
-			alert("Форма отправлена");
-		},
-	});
-
-	console.log("Form values: ", formik.values);
+	const validate = (values: TValues): TErrors => {
+		let errors: TErrors = {};
+		if (values.comment.length <= 3) {
+			errors.comment = "Введите больше 3х символов";
+		}
+		return errors;
+	};
 
 	return (
-		<form className={styles.form} onSubmit={formik.handleSubmit}>
-			<textarea
-				name="comment"
-				className={styles.input}
-				value={formik.values.comment}
-				onChange={formik.handleChange}
-			/>
-
-			{/* {touched && valueError && <div>{valueError}</div>} */}
-			<button type="submit" className={styles.button}>
-				Комментировать
-			</button>
-		</form>
+		<Formik
+			initialValues={initialValues}
+			onSubmit={onSubmit}
+			validate={validate}
+			validateOnBlur={false}
+			validateOnChange={false}
+		>
+			<Form className={styles.form}>
+				<Field name="comment" as="textarea" className={styles.input} />
+				<ErrorMessage name="comment" />
+				<button type="submit" className={styles.button}>
+					Комментировать
+				</button>
+			</Form>
+		</Formik>
 	);
 }
