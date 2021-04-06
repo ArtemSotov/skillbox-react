@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useSelector, useStore } from "react-redux";
 import { RootState } from "../../store/reducer";
 import { generateId } from "../../utils/react/generateRandomIndex";
@@ -15,10 +15,12 @@ export function CardsList() {
 	const [posts, setPosts] = useState<any[]>([]);
 	const [loading, setLoading] = useState(false);
 	const [errorLoading, setErrorLoading] = useState("");
+	const [nextAfter, setNextAfter] = useState("");
 
+	const bottomOfList = useRef<HTMLDivElement>(null);
+
+	// для бесконечного списка
 	useEffect(() => {
-		// if (!token) return;
-
 		async function load() {
 			setLoading(true);
 			setErrorLoading("");
@@ -26,22 +28,46 @@ export function CardsList() {
 			try {
 				const {
 					data: {
-						data: { children },
+						data: { after, children },
 					},
 				} = await axios.get("https://oauth.reddit.com/rising.json", {
 					headers: { Authorization: `bearer ${token}` },
+					params: {
+						limit: 10,
+						after: nextAfter,
+					},
 				});
 				// console.log("children: ", children);
 
-				setPosts(children);
+				setPosts((prevChildren) => prevChildren.concat(...children));
+				setNextAfter(after);
 			} catch (error) {
 				setErrorLoading(String(error));
 			}
 			setLoading(false);
 		}
 
-		load();
-	}, []);
+		const observer = new IntersectionObserver(
+			(entries) => {
+				if (entries[0].isIntersecting) {
+					load();
+				}
+			},
+			{
+				rootMargin: "10px",
+			}
+		);
+
+		if (bottomOfList.current) {
+			observer.observe(bottomOfList.current);
+		}
+
+		return () => {
+			if (bottomOfList.current) {
+				observer.unobserve(bottomOfList.current);
+			}
+		};
+	}, [bottomOfList.current, nextAfter, token]);
 
 	return (
 		<ul className={styles.cardsList}>
@@ -63,9 +89,9 @@ export function CardsList() {
 					url={post.data.url}
 				/>
 			))}
-			{/* {cardsList.map((p) => (
-				<Card preview={p.preview?.replace("&amp;", "&")} title={p.title} author={p.author} url={p.url} key={p.id} />
-			))} */}
+
+			<div ref={bottomOfList} />
+
 			{loading && (
 				<div role="alert" style={{ textAlign: "center" }}>
 					Загрузка...
