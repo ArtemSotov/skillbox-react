@@ -16,6 +16,7 @@ export function CardsList() {
 	const [loading, setLoading] = useState(false);
 	const [errorLoading, setErrorLoading] = useState("");
 	const [nextAfter, setNextAfter] = useState("");
+	const [count, setCount] = useState(0);
 
 	const bottomOfList = useRef<HTMLDivElement>(null);
 
@@ -39,6 +40,7 @@ export function CardsList() {
 				});
 				setPosts((prevChildren) => prevChildren.concat(...children));
 				setNextAfter(after);
+				setCount((prevCount) => prevCount + 1);
 			} catch (error) {
 				setErrorLoading(String(error));
 			}
@@ -48,7 +50,7 @@ export function CardsList() {
 		const observer = new IntersectionObserver(
 			(entries) => {
 				if (entries[0].isIntersecting) {
-					if (!loading) {
+					if (!loading && count < 3) {
 						load();
 					}
 				}
@@ -67,7 +69,11 @@ export function CardsList() {
 				observer.unobserve(bottomOfList.current);
 			}
 		};
-	}, [bottomOfList.current, nextAfter, token, loading]);
+	}, [bottomOfList.current, nextAfter, token, loading, count]);
+
+	const handleLoadNext = () => {
+		setCount(0);
+	};
 
 	return (
 		<ul className={styles.cardsList}>
@@ -100,6 +106,11 @@ export function CardsList() {
 			{errorLoading && (
 				<div role="alert" style={{ textAlign: "center" }}>
 					{errorLoading}
+				</div>
+			)}
+			{count === 3 && (
+				<div style={{ textAlign: "center" }}>
+					<input type="button" value="Загрузить еще" onClick={handleLoadNext} />
 				</div>
 			)}
 		</ul>
