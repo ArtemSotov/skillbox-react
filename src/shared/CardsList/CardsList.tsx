@@ -37,8 +37,6 @@ export function CardsList() {
 						after: nextAfter,
 					},
 				});
-				// console.log("children: ", children);
-
 				setPosts((prevChildren) => prevChildren.concat(...children));
 				setNextAfter(after);
 			} catch (error) {
@@ -50,7 +48,9 @@ export function CardsList() {
 		const observer = new IntersectionObserver(
 			(entries) => {
 				if (entries[0].isIntersecting) {
-					load();
+					if (!loading) {
+						load();
+					}
 				}
 			},
 			{
@@ -67,7 +67,7 @@ export function CardsList() {
 				observer.unobserve(bottomOfList.current);
 			}
 		};
-	}, [bottomOfList.current, nextAfter, token]);
+	}, [bottomOfList.current, nextAfter, token, loading]);
 
 	return (
 		<ul className={styles.cardsList}>
