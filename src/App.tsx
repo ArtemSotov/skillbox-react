@@ -2,7 +2,7 @@
 // https://www.figma.com/file/STABzVueKL3brf4aOgkvW2/Rd-(Mirror)?node-id=94%3A3575
 // Документация к Reddit Api: reddit.com/dev/api/oauth
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./main.global.css";
 import { hot } from "react-hot-loader/root";
 import { Layout } from "./shared/Layout";
@@ -15,8 +15,8 @@ import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { rootReducer } from "./store/reducer";
 import thunk from "redux-thunk";
-import { CommentFormSmart } from "./shared/CommentFormSmart";
-import { CommentFormFormik } from "./shared/CommentFormFormik";
+import { BrowserRouter, Route } from "react-router-dom";
+import { Post } from "./shared/Post";
 
 const store = createStore(
 	rootReducer,
@@ -24,21 +24,29 @@ const store = createStore(
 );
 
 function AppComponent() {
-	// const dispatch = useDispatch();
-	// useEffect(() => {
-	// 	store.dispatch(tokenThunk());
-	// }, []);
+	const [mounted, setMounted] = useState(false);
+	useEffect(() => {
+		setMounted(true);
+	}, []);
 
 	return (
 		<Provider store={store}>
-			<PostsContextProvider>
-				<Layout>
-					<Header />
-					<Content>
-						<CardsList />
-					</Content>
-				</Layout>
-			</PostsContextProvider>
+			{mounted && (
+				<BrowserRouter>
+					<PostsContextProvider>
+						<Layout>
+							<Header />
+							<Content>
+								<CardsList />
+
+								<Route path="/posts/:id">
+									<Post />
+								</Route>
+							</Content>
+						</Layout>
+					</PostsContextProvider>
+				</BrowserRouter>
+			)}
 		</Provider>
 	);
 }

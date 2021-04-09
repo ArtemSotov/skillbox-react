@@ -1,33 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Post } from "../../../../Post";
+import React from "react";
 import styles from "./title.css";
+import { Link } from "react-router-dom";
 
 interface ITitleProps {
 	title?: string;
 }
 
 export function Title({ title }: ITitleProps) {
-	const [isModalOpened, setIsModelOpened] = useState(false);
-
 	return (
 		<h2 className={styles.title}>
-			<a
-				href="#post-url"
-				className={styles.postLink}
-				onClick={() => {
-					setIsModelOpened(true);
-				}}
-			>
+			<Link to="/posts/1" className={styles.postLink}>
 				{title}
-			</a>
-
-			{isModalOpened && (
-				<Post
-					onClose={() => {
-						setIsModelOpened(false);
-					}}
-				/>
-			)}
+			</Link>
 		</h2>
 	);
 }

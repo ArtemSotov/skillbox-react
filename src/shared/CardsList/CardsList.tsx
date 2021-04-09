@@ -1,9 +1,7 @@
 import axios from "axios";
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { useSelector, useStore } from "react-redux";
+import React, { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import { RootState } from "../../store/reducer";
-import { generateId } from "../../utils/react/generateRandomIndex";
-import { postsContext } from "../context/postsContext";
 import { Card } from "./Card/Card";
 import styles from "./cardslist.css";
 
@@ -50,7 +48,7 @@ export function CardsList() {
 		const observer = new IntersectionObserver(
 			(entries) => {
 				if (entries[0].isIntersecting) {
-					if (!loading && count < 3) {
+					if (!loading && !errorLoading && count < 3) {
 						load();
 					}
 				}

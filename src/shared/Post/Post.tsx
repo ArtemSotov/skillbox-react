@@ -4,10 +4,7 @@ import { generateId } from "../../utils/react/generateRandomIndex";
 import { IComment } from "../CommentForm/CommentList";
 import { CommentFormFormik } from "../CommentFormFormik";
 import styles from "./post.css";
-
-interface IPost {
-	onClose?: () => void;
-}
+import { useHistory } from "react-router-dom";
 
 const commentList: IComment[] = [
 	{
@@ -40,8 +37,9 @@ const commentList: IComment[] = [
 	},
 ].map(generateId);
 
-export function Post(props: IPost) {
+export function Post() {
 	const ref = useRef<HTMLDivElement>(null);
+	const history = useHistory();
 
 	useEffect(() => {
 		function handleClick(event: MouseEvent) {
@@ -49,7 +47,7 @@ export function Post(props: IPost) {
 				event.target instanceof Node &&
 				!ref.current?.contains(event.target)
 			) {
-				props.onClose?.();
+				history.push("/");
 			}
 		}
 		document.addEventListener("click", handleClick);

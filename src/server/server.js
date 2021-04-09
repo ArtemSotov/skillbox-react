@@ -13,10 +13,6 @@ const app = express();
 process.env;
 app.use("/static", express.static("./dist/client/"));
 
-app.get("/", (req, res) => {
-	res.send(indexTemplate(ReactDOM.renderToString(App())));
-});
-
 app.get("/auth", (req, res) => {
 	axios
 		.post(
@@ -39,6 +35,10 @@ app.get("/auth", (req, res) => {
 			);
 		})
 		.catch(console.log);
+});
+
+app.get("*", (req, res) => {
+	res.send(indexTemplate(ReactDOM.renderToString(App())));
 });
 
 app.listen(3000, () => {
