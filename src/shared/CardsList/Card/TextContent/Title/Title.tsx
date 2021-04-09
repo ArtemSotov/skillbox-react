@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 
 interface ITitleProps {
 	title?: string;
+	id?: string;
 }
 
-export function Title({ title }: ITitleProps) {
+export function Title({ title, id }: ITitleProps) {
+	const link = "/posts/" + id;
 	return (
 		<h2 className={styles.title}>
-			<Link to="/posts/1" className={styles.postLink}>
+			<Link to={link} className={styles.postLink}>
 				{title}
 			</Link>
 		</h2>

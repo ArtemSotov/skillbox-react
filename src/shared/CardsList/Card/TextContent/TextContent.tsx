@@ -8,15 +8,16 @@ interface ITextContentProps {
 	title?: string;
 	author?: string;
 	url?: string;
+	idCard?: string;
 }
 
 export function TextContent(props: ITextContentProps) {
-	const { title, author, url } = props;
+	const { title, author, url, idCard } = props;
 	return (
 		<div className={styles.textContent}>
 			<AuthorInfo author={author} />
 			<br />
-			<Title title={title} />
+			<Title title={title} id={idCard} />
 		</div>
 	);
 }

@@ -15,8 +15,9 @@ import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { rootReducer } from "./store/reducer";
 import thunk from "redux-thunk";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Post } from "./shared/Post";
+import { PageNotFound } from "./shared/PageNotFound";
 
 const store = createStore(
 	rootReducer,
@@ -37,11 +38,20 @@ function AppComponent() {
 						<Layout>
 							<Header />
 							<Content>
-								<CardsList />
+								<Switch>
+									<Redirect exact from="/" to="/posts" />
+									<Redirect exact from="/auth" to="/posts" />
 
-								<Route path="/posts/:id">
-									<Post />
-								</Route>
+									<Route path="/posts">
+										<CardsList />
+										<Route path="/posts/:id">
+											<Post />
+										</Route>
+									</Route>
+									<Route path="*">
+										<PageNotFound />
+									</Route>
+								</Switch>
 							</Content>
 						</Layout>
 					</PostsContextProvider>

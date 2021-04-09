@@ -84,6 +84,7 @@ export function CardsList() {
 			{posts.map((post) => (
 				<Card
 					key={post.data.id}
+					idCard={post.data.id}
 					preview={post.data?.preview?.images[0]?.source?.url?.replace(
 						"&amp;",
 						"&"

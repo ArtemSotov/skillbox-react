@@ -47,7 +47,7 @@ export function Post() {
 				event.target instanceof Node &&
 				!ref.current?.contains(event.target)
 			) {
-				history.push("/");
+				history.push("/posts");
 			}
 		}
 		document.addEventListener("click", handleClick);
