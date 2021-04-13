@@ -10,9 +10,10 @@ interface IUserBlockProps {
 	loading?: boolean;
 }
 
+const PORT = process.env.PORT || 3000;
+
 export function UserBlock({ avatarSrc, username, loading }: IUserBlockProps) {
-	//const url = `https://www.reddit.com/api/v1/authorize?client_id=${process.env.client_id}&response_type=code&state=random_string&redirect_uri=http://localhost:3000/auth&duration=permanent&scope=read submit identity`;
-	const url = `https://www.reddit.com/api/v1/authorize?client_id=XE2-sAxcBzewcw&response_type=code&state=random_string&redirect_uri=http://localhost:3000/auth&duration=permanent&scope=read submit identity`;
+	const url = `https://www.reddit.com/api/v1/authorize?client_id=XE2-sAxcBzewcw&response_type=code&state=random_string&redirect_uri=http://localhost:${PORT}/auth&duration=permanent&scope=read submit identity`;
 	return (
 		<a href={url} className={styles.userBox}>
 			<div className={styles.avatarBox}>
