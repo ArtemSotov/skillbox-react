@@ -2,16 +2,33 @@
   "name": "new-reddit",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "14.x"
+  },
   "main": "index.js",
   "scripts": {
     "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js",
-    "build:prod": "cross-env NODE_ENV=production webpack --config webpack.config.js",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "dev": "cross-env NODE_ENV=development CLIENT_ID=XE2-sAxcBzewcw node ./bin/dev.js",
-    "test": "jest"
+    "test": "jest",
+    "start": "node ./dist/server/server.js"
   },
   "author": "Artem Sotov",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cross-env": "^7.0.2",
+    "express": "^4.17.1",
+    "formik": "^2.2.6",
+    "nodemon": "^2.0.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.2",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.3.0",
+    "yup": "^0.32.9",
     "@hot-loader/react-dom": "^16.13.0",
     "@types/classnames": "^2.2.11",
     "@types/enzyme": "^3.10.8",
@@ -45,20 +62,5 @@
     "webpack-dev-server": "^3.11.0",
     "webpack-hot-middleware": "^2.25.0",
     "webpack-node-externals": "^2.5.2"
-  },
-  "dependencies": {
-    "axios": "^0.21.1",
-    "cross-env": "^7.0.2",
-    "express": "^4.17.1",
-    "formik": "^2.2.6",
-    "nodemon": "^2.0.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-redux": "^7.2.2",
-    "react-router-dom": "^5.2.0",
-    "redux": "^4.0.5",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.3.0",
-    "yup": "^0.32.9"
   }
 }

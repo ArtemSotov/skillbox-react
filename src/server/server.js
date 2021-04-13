@@ -7,6 +7,7 @@ import https from "https";
 
 // только для тестирования. Отключает SSL
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -17,7 +18,7 @@ app.get("/auth", (req, res) => {
 	axios
 		.post(
 			"https://www.reddit.com/api/v1/access_token",
-			`grant_type=authorization_code&code=${req.query.code}&redirect_uri=http://localhost:3000/auth`,
+			`grant_type=authorization_code&code=${req.query.code}&redirect_uri=http://localhost:${PORT}/auth`,
 			{
 				auth: {
 					username: process.env.CLIENT_ID,
@@ -41,6 +42,6 @@ app.get("*", (req, res) => {
 	res.send(indexTemplate(ReactDOM.renderToString(App())));
 });
 
-app.listen(3000, () => {
-	console.log("Server started on http://localhost:3000");
+app.listen(PORT, () => {
+	console.log(`Server started on http://localhost:${PORT}`);
 });
