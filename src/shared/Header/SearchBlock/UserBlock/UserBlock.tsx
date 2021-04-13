@@ -11,9 +11,10 @@ interface IUserBlockProps {
 }
 
 const PORT = process.env.PORT || 3000;
+const SERVER = process.env.SERVER || "http://localhost:" + PORT;
 
 export function UserBlock({ avatarSrc, username, loading }: IUserBlockProps) {
-	const url = `https://www.reddit.com/api/v1/authorize?client_id=XE2-sAxcBzewcw&response_type=code&state=random_string&redirect_uri=http://localhost:${PORT}/auth&duration=permanent&scope=read submit identity`;
+	const url = `https://www.reddit.com/api/v1/authorize?client_id=XE2-sAxcBzewcw&response_type=code&state=random_string&redirect_uri=${SERVER}/auth&duration=permanent&scope=read submit identity`;
 	return (
 		<a href={url} className={styles.userBox}>
 			<div className={styles.avatarBox}>
