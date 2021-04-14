@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "build:dev": "cross-env NODE_ENV=development NODE_ENV=development CLIENT_ID=XE2-sAxcBzewcw SECRET=kQjm8ISUhyfsGmSqFsoJSOmjUt2F9A webpack --config webpack.config.js",
-    "build": "cross-env NODE_ENV=production CLIENT_ID=2WlzSEg2652mCg SECRET=vAqSwQvlCx3auPmty0kRCaMANJ4dBw SERVER=https://skillbox-react-app-timmer.herokuapp.com/ webpack --config webpack.config.js",
+    "build": "cross-env NODE_ENV=production CLIENT_ID=2WlzSEg2652mCg SECRET=vAqSwQvlCx3auPmty0kRCaMANJ4dBw SERVER=https://skillbox-react-app-timmer.herokuapp.com webpack --config webpack.config.js",
     "dev": "cross-env NODE_ENV=development CLIENT_ID=XE2-sAxcBzewcw SECRET=kQjm8ISUhyfsGmSqFsoJSOmjUt2F9A node ./bin/dev.js",
     "test": "jest",
     "start": "node ./dist/server/server.js"
