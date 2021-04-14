@@ -8,10 +8,10 @@
   "main": "index.js",
   "scripts": {
     "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
+    "build": "cross-env NODE_ENV=production CLIENT_ID=2WlzSEg2652mCg SECRET=vAqSwQvlCx3auPmty0kRCaMANJ4dBw SERVER=https://skillbox-react-app-timmer.herokuapp.com/ webpack --config webpack.config.js",
     "dev": "cross-env NODE_ENV=development CLIENT_ID=XE2-sAxcBzewcw SECRET=kQjm8ISUhyfsGmSqFsoJSOmjUt2F9A node ./bin/dev.js",
     "test": "jest",
-    "start": "cross-env CLIENT_ID=2WlzSEg2652mCg SECRET=vAqSwQvlCx3auPmty0kRCaMANJ4dBw SERVER=https://skillbox-react-app-timmer.herokuapp.com/ node ./dist/server/server.js"
+    "start": "node ./dist/server/server.js"
   },
   "author": "Artem Sotov",
   "license": "ISC",
