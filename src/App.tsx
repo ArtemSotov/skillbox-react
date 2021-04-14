@@ -26,7 +26,9 @@ const store = createStore(
 
 const PORT = process.env.PORT || 3000;
 const SERVER =
-	process.env.SERVER !== "undefined" ? process.env.SERVER : "http://localhost";
+	process.env.SERVER !== "undefined"
+		? process.env.SERVER
+		: "http://localhost:" + PORT;
 const SECRET = process.env.SECRET || "none secret";
 const NODE_ENV = process.env.NODE_ENV;
 const CLIENT_ID = process.env.CLIENT_ID || "asdf";
@@ -60,9 +62,7 @@ function AppComponent() {
 									</Route>
 								</Switch>
 							</Content>
-							<div>
-								{SERVER}:{PORT}
-							</div>
+							<div>{SERVER}</div>
 							<div>{SECRET}</div>
 							<div>{NODE_ENV}</div>
 							<div>{CLIENT_ID}</div>

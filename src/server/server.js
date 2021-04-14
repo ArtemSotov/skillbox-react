@@ -9,7 +9,9 @@ import https from "https";
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 const PORT = process.env.PORT || 3000;
 const SERVER =
-	process.env.SERVER !== "undefined" ? process.env.SERVER : "http://localhost";
+	process.env.SERVER !== "undefined"
+		? process.env.SERVER
+		: "http://localhost:" + { PORT };
 
 const app = express();
 
@@ -20,7 +22,7 @@ app.get("/auth", (req, res) => {
 	axios
 		.post(
 			"https://www.reddit.com/api/v1/access_token",
-			`grant_type=authorization_code&code=${req.query.code}&redirect_uri=${SERVER}:${PORT}/auth`,
+			`grant_type=authorization_code&code=${req.query.code}&redirect_uri=${SERVER}/auth`,
 			{
 				auth: {
 					username: process.env.CLIENT_ID,
