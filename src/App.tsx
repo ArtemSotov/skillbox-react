@@ -24,14 +24,14 @@ const store = createStore(
 	composeWithDevTools(applyMiddleware(thunk))
 );
 
-const PORT = process.env.PORT || 3000;
-const SERVER =
-	process.env.SERVER !== "undefined"
-		? process.env.SERVER
-		: "http://localhost:" + PORT;
-const SECRET = process.env.SECRET || "none secret";
-const NODE_ENV = process.env.NODE_ENV;
-const CLIENT_ID = process.env.CLIENT_ID || "asdf";
+// const PORT = process.env.PORT || 3000;
+// const SERVER =
+// 	process.env.SERVER !== "undefined"
+// 		? process.env.SERVER
+// 		: "http://localhost:" + PORT;
+// const SECRET = process.env.SECRET || "none secret";
+// const NODE_ENV = process.env.NODE_ENV;
+// const CLIENT_ID = process.env.CLIENT_ID || "asdf";
 
 function AppComponent() {
 	const [mounted, setMounted] = useState(false);
@@ -62,10 +62,10 @@ function AppComponent() {
 									</Route>
 								</Switch>
 							</Content>
-							<div>{SERVER}</div>
+							{/* <div>{SERVER}</div>
 							<div>{SECRET}</div>
 							<div>{NODE_ENV}</div>
-							<div>{CLIENT_ID}</div>
+							<div>{CLIENT_ID}</div> */}
 						</Layout>
 					</PostsContextProvider>
 				</BrowserRouter>

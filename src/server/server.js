@@ -4,6 +4,8 @@ import { App } from "../App";
 import { indexTemplate } from "./indexTemplate";
 import axios from "axios";
 import https from "https";
+import compression from "compression";
+import helmet from "helmet";
 
 // только для тестирования. Отключает SSL
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
@@ -11,11 +13,17 @@ const PORT = process.env.PORT || 3000;
 const SERVER =
 	process.env.SERVER !== "undefined"
 		? process.env.SERVER
-		: "http://localhost:" + { PORT };
+		: "http://localhost:" + PORT;
 
 const app = express();
 
-process.env;
+app.use(compression());
+app.use(
+	helmet({
+		contentSecurityPolicy: false,
+	})
+);
+
 app.use("/static", express.static("./dist/client/"));
 
 app.get("/auth", (req, res) => {
