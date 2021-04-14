@@ -15,7 +15,7 @@ const COMMON_PLUGINS = [
 		"process.env.CLIENT_ID": `'${process.env.CLIENT_ID}'`,
 		"process.env.SECRET": `'${process.env.SECRET}'`,
 		"process.env.SERVER": `'${process.env.SERVER}'`,
-		"process.env.PORT": `'${process.env.PORT}'`,
+		//"process.env.PORT": `'${process.env.PORT}'`,
 	}),
 ];
 
