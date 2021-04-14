@@ -6,12 +6,22 @@ const NODE_ENV = process.env.NODE_ENV;
 const IS_DEV = NODE_ENV === "development";
 const IS_PROD = NODE_ENV === "production";
 const GLOBAL_CSS_REGEXP = /\.global\.css$/;
-const DEV_PLUGINS = [new CleanWebpackPlugin(), new HotModuleReplacementPlugin()];
-const COMMON_PLUGINS = [new DefinePlugin({'process.env.CLIENT_ID': `'${process.env.CLIENT_ID}'`})]
+const DEV_PLUGINS = [
+	new CleanWebpackPlugin(),
+	new HotModuleReplacementPlugin(),
+];
+const COMMON_PLUGINS = [
+	new DefinePlugin({
+		"process.env.CLIENT_ID": `'${process.env.CLIENT_ID}'`,
+		"process.env.SECRET": `'${process.env.SECRET}'`,
+		"process.env.SERVER": `'${process.env.SERVER}'`,
+		"process.env.PORT": `'${process.env.PORT}'`,
+	}),
+];
 
 function setupDevtool() {
-  if (IS_DEV) return "eval";
-  if (IS_PROD) return false;
+	if (IS_DEV) return "eval";
+	if (IS_PROD) return false;
 }
 
 module.exports = {
@@ -61,6 +71,5 @@ module.exports = {
 		],
 	},
 	devtool: setupDevtool(),
-	plugins: IS_DEV
-		? DEV_PLUGINS.concat(COMMON_PLUGINS) : COMMON_PLUGINS,
+	plugins: IS_DEV ? DEV_PLUGINS.concat(COMMON_PLUGINS) : COMMON_PLUGINS,
 };

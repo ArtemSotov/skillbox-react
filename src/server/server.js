@@ -8,7 +8,10 @@ import https from "https";
 // только для тестирования. Отключает SSL
 process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 const PORT = process.env.PORT || 3000;
-const SERVER = process.env.SERVER || "http://localhost:" + PORT;
+const SERVER =
+	process.env.SERVER !== "undefined"
+		? process.env.SERVER
+		: "http://localhost:" + PORT;
 
 const app = express();
 
