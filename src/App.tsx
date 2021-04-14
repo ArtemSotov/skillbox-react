@@ -24,6 +24,9 @@ const store = createStore(
 	composeWithDevTools(applyMiddleware(thunk))
 );
 
+const PORT = process.env.PORT || 3000;
+const SERVER = process.env.SERVER || "http://localhost:" + PORT;
+
 function AppComponent() {
 	const [mounted, setMounted] = useState(false);
 	useEffect(() => {
@@ -53,6 +56,7 @@ function AppComponent() {
 									</Route>
 								</Switch>
 							</Content>
+							<div>{SERVER}</div>
 						</Layout>
 					</PostsContextProvider>
 				</BrowserRouter>
