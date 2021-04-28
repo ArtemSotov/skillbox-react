@@ -1,5 +1,4 @@
 import React from "react";
-import { Text } from "../../../Text";
 import { AuthorInfo } from "./AuthorInfo";
 import styles from "./textcontent.css";
 import { Title } from "./Title";
