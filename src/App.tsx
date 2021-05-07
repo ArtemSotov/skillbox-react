@@ -19,6 +19,9 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Post } from "./shared/Post";
 import { PageNotFound } from "./shared/PageNotFound";
 
+import { easyStore } from "./store/easyStore";
+import { StoreProvider } from "easy-peasy";
+
 const store = createStore(
 	rootReducer,
 	composeWithDevTools(applyMiddleware(thunk))
@@ -32,32 +35,34 @@ function AppComponent() {
 
 	return (
 		<Provider store={store}>
-			{mounted && (
-				<BrowserRouter>
-					<PostsContextProvider>
-						<Layout>
-							<Header />
-							<Content>
-								{/* <CardsList /> */}
-								<Switch>
-									<Redirect exact from="/" to="/posts" />
-									<Redirect from="/auth" to="/posts" />
+			<StoreProvider store={easyStore}>
+				{mounted && (
+					<BrowserRouter>
+						<PostsContextProvider>
+							<Layout>
+								<Header />
+								<Content>
+									{/* <CardsList /> */}
+									<Switch>
+										<Redirect exact from="/" to="/posts" />
+										<Redirect from="/auth" to="/posts" />
 
-									<Route path="/posts">
-										<CardsList />
-										<Route path="/posts/:id">
-											<Post />
+										<Route path="/posts">
+											<CardsList />
+											<Route path="/posts/:id">
+												<Post />
+											</Route>
 										</Route>
-									</Route>
-									<Route path="*">
-										<PageNotFound />
-									</Route>
-								</Switch>
-							</Content>
-						</Layout>
-					</PostsContextProvider>
-				</BrowserRouter>
-			)}
+										<Route path="*">
+											<PageNotFound />
+										</Route>
+									</Switch>
+								</Content>
+							</Layout>
+						</PostsContextProvider>
+					</BrowserRouter>
+				)}
+			</StoreProvider>
 		</Provider>
 	);
 }

@@ -1,13 +1,5 @@
-import {
-	ErrorMessage,
-	Field,
-	Form,
-	Formik,
-	FormikErrors,
-	useFormik,
-} from "formik";
-import React, { useState } from "react";
-import { values } from "../../../webpack.config";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import React from "react";
 import styles from "./commentformformik.css";
 
 export function CommentFormFormik() {

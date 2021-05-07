@@ -1,10 +1,14 @@
 import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { generateId } from "../../utils/react/generateRandomIndex";
-import { IComment } from "../CommentForm/CommentList";
+import { CommentList, IComment } from "../CommentForm/CommentList";
 import { CommentFormFormik } from "../CommentFormFormik";
 import styles from "./post.css";
 import { useHistory } from "react-router-dom";
+import { CommentForm } from "../CommentForm";
+import { CommentFormSmart } from "../CommentFormSmart";
+import { CommentFormRedux } from "../CommentFormRedux";
+import { CommentFormEasyPeasy } from "../CommentFormEasyPeasy";
 
 const commentList: IComment[] = [
 	{
@@ -69,7 +73,10 @@ export function Post() {
 				<p>Есть над чем задуматься</p>
 				<p>Есть над чем задуматься</p>
 			</div>
-			<CommentFormFormik />
+			<CommentFormEasyPeasy />
+			{/* <CommentFormRedux /> */}
+			{/* <CommentFormFormik /> */}
+			{/* <CommentFormSmart /> */}
 			<hr />
 			{/* <CommentList list={commentList} /> */}
 		</div>,
